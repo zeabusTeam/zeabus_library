@@ -21,17 +21,26 @@ namespace zeabus
 namespace serial
 {
     
-    BaseClass::BaseClass( std::string device_path ) : io_port( this->io_port )
+    BaseClass::BaseClass( std::string device_path ) : io_port( this->io_service )
     {
         this->device_path = device_path;
     } // function BaseClass::BaseClass
+
+    BaseClass::~BaseClass()
+    {
+        bool result = this->close_port();
+        if( ! result )
+        {
+            std::cout   << "Warning unsuccess close port " << this->device_path << "\n";
+        }
+    } // function BaseClass::~BaseClass
 
     bool BaseClass::open_port()
     {
         bool result;
         try
         {
-            this->io_port.open( this->port_name );
+            this->io_port.open( this->device_path );
             result = true;
         }
         catch( const std::exception& error_message )
@@ -60,27 +69,11 @@ namespace serial
 
     bool BaseClass::is_open()
     {
-        return this->io_port.close();
+        return this->io_port.is_open();
     } // function BaseClass::is_open()
 
     // The next is same name function but use overload for reduce compile time
     bool BaseClass::set_option_port( _boost_serial_port::baud_rate data )
-    {
-        bool result;    // init variable for return result of set option
-        _boost_error_code error_code;
-        this->io_port.set_option( data , error_code );
-        if( error_code != _boost_errc::success )
-        {
-            result = false;
-        }
-        else
-        {
-            result = true;
-        }
-        return result;
-    } // function BaseClass::set_option_port
-
-    bool BaseClass::set_option_port( _boost_serial_port::flow_control data )
     {
         bool result;    // init variable for return result of set option
         _boost_error_code error_code;

@@ -27,11 +27,21 @@
 
 #include    <boost/core/noncopyable.hpp>
 
+#include    <boost/system/error_code.hpp>
+
+#include    <iostream>
+
 #include    <vector>
 
 namespace _boost_errc = boost::system::errc;
-namespace _boost_serial_port = boost::asio::serial_port_base;
-namespace _boost_error_code = boost::system::error_code;
+//namespace _boost_serial_port = boost::asio::serial_port_base;
+//namespace _boost_error_code = boost::system::error_code;
+
+typedef boost::asio::serial_port_base _boost_serial_port;
+typedef boost::system::error_code _boost_error_code;
+
+#ifndef _ZEABUS_SERIAL_BASE_CLASS_HPP__
+#define _ZEABUS_SERIAL_BASE_CLASS_HPP__
 
 namespace zeabus
 {
@@ -70,7 +80,7 @@ namespace serial
             bool set_option_port( _boost_serial_port::character_size data );
 
         protected:
-            std::string device_path:            // This variable collect path to dervice
+            std::string device_path;            // This variable collect path to dervice
             boost::asio::io_service io_service; // each port must have port service
             boost::asio::serial_port io_port;
             
@@ -79,3 +89,5 @@ namespace serial
 } // namespace serial
 
 } // namespace zeabus
+
+#endif // _ZEABUS_SERIAL_BASE_CLASS_HPP__

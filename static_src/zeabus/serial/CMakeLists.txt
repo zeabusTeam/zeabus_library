@@ -1,5 +1,5 @@
 add_library( SynchronousPort SHARED
-    serial_port.cpp
+    base_class.cpp
 )
 
 target_link_libraries( SynchronousPort ${Boost_LIBRARIES} )

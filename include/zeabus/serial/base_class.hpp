@@ -63,11 +63,11 @@ namespace serial
 
             // because we want to compile this to library and reduce time of compile main code
             // that reason make we can't use template to build below function
-            bool set_option_port( boost::asio::serial_port_base::baud_rate data );
-            bool set_option_port( boost::asio::serial_port_base::flow_control data );
-            bool set_option_port( boost::asio::serial_port_base::parity data );
-            bool set_option_port( boost::asio::serial_port_base::stop_bits data );
-            bool set_option_port( boost::asio::serial_port_base::character_size data );
+            bool set_option_port( _boost_serial_port::baud_rate data );
+            bool set_option_port( _boost_serial_port::flow_control data );
+            bool set_option_port( _boost_serial_port::parity data );
+            bool set_option_port( _boost_serial_port::stop_bits data );
+            bool set_option_port( _boost_serial_port::character_size data );
 
         protected:
             std::string device_path:            // This variable collect path to dervice

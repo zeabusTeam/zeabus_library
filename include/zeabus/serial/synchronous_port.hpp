@@ -6,8 +6,14 @@
 // MACRO DETAIL
 
 // README
+//  LETTER01 :
+//      This time I desize about when you read and write.
+//      It not my reposible to detect and warn you.
+//      It only interfacce to boost library
+//  
 
 // REFERENCE
+//  ref01 : https://theboostcpplibraries.com/boost.system
 
 // MACRO SET
 

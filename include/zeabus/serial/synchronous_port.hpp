@@ -30,7 +30,7 @@ namespace zeabus
 namespace serial
 {
 
-    class SynchronousPort : public SerialPort
+    class SynchronousPort : public BaseClass
     {
 
         public:

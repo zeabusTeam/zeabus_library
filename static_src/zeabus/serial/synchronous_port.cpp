@@ -21,17 +21,17 @@ namespace zeabus
 namespace serial
 {
 
-    SynchronousPort::SynchronousPort( std::string device_path ) : BaseClass( device_path );
+    SynchronousPort::SynchronousPort( std::string device_path ) : BaseClass( device_path ){}
 
     // Below 2 function will return about size of data
     unsigned int SynchronousPort::read_data( std::vector<unsigned char>* buffer , 
             unsigned int size , 
-            int* error_code = NULL )
+            int* error_code )
     {
 
-        if( *buffer.size() < size ) // Make sure you buffer have length >= desire to read
+        if( buffer->size() < size ) // Make sure you buffer have length >= desire to read
         {
-            *buffer.resize( size );
+            buffer->resize( size );
         }
 
         boost::system::error_code boost_error;
@@ -48,7 +48,7 @@ namespace serial
 
     unsigned int SynchronousPort::write_data( std::vector< unsigned char>* buffer , 
             unsigned int size ,
-            int* error_code = NULL )
+            int* error_code )
     {
 
         boost::system::error_code boost_error;
@@ -63,7 +63,7 @@ namespace serial
     }  // function write_data
 
     // Below 2 function will use 2 above function but will already convert to string
-    unsigned int read_data( std::string* message , int* error_code = NULL )
+    unsigned int SynchronousPort::read_data( std::string* message , int* error_code )
     {
 
         boost::system::error_code boost_error = 
@@ -83,13 +83,12 @@ namespace serial
                     boost::asio::buffer( &buffer , 1 ) ,
                     boost_error );
 
-            switch( temporary )
+            switch( buffer )
             {
             case '\n':
                 continue_read = false;
             case '\0':
             case '\r':
-            case '\n':
                 break;
             default :
                 *message += buffer;
@@ -103,7 +102,7 @@ namespace serial
             
     } // End function read_data overload? for in case tou want to read string 
 
-    unsigned int write_data( std::string* message , int* error_code = NULL )
+    unsigned int SynchronousPort::write_data( std::string* message , int* error_code )
     {
         boost::system::error_code boost_error;
     
@@ -112,7 +111,7 @@ namespace serial
                 boost::asio::transfer_all() ,
                 boost_error );
 
-        error_code = boost_error.value();
+        *error_code = boost_error.value();
 
         return size_message;
     } // End function write data

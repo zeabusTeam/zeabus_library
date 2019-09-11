@@ -66,22 +66,21 @@ namespace packet
     void BaseClass< vector_type >::print_data( std::string message )
     {
         std::cout   << message;
-        for( std::vector< vector_type >::iterator it = this->vector.begin() ;
-                it != this->vector.end() ;
-                it++ )
+        for( auto it = this->vector.begin() ; it != this->vector.end() ; it++ )
         {
-            std::cout << *i << ' ';
+            std::cout << *it << ' ';
         } // loop print
         std::cout   << "\n";
     } // BaseClass< vector_type >::print_data
 
-    template< class vector_tyoe >
+    template< class vector_type >
     void BaseClass< vector_type >::push( vector_type data )
     {
         this->vector.push_back( data );
     } // BaseClass< vector_type >::push
 
-    template< class vector_type , type_name... pack_type >
+    template< class vector_type >
+    template< typename... pack_type >
     void BaseClass< vector_type >::push( vector_type data , pack_type... pack )
     {
         this->push( data );
@@ -89,7 +88,7 @@ namespace packet
     } // BaseClass< vector_type >::push
 
     template< class vector_type >
-    void BaseClass< vector_type >::operator[]( unsigned int position )
+    vector_type& BaseClass< vector_type >::operator[]( unsigned int position )
     {
         return this->vector[ position ];
     } // BaseClass< vector_type >::operator[]

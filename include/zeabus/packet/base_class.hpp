@@ -56,7 +56,7 @@ namespace packet
             template< typename... pack_type >
             void push( vector_type data , pack_type... pack ); // add vary data to last element
 
-            reference operator[]( unsigned int position ); // access n
+            vector_type& operator[]( unsigned int position ); // access n
 
             std::vector< vector_type >* pointer(); // return pointer of vector
 

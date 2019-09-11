@@ -9,6 +9,8 @@
 
 // REFERENCE
 //  ref01   : https://en.cppreference.com/w/cpp/container/vector/operator_at
+//  ref02   : http://www.cplusplus.com/reference/ios/ios_base/width/
+//  ref03   : http://www.cplusplus.com/reference/vector/vector/begin/
 
 // MACRO SET
 
@@ -37,24 +39,29 @@ namespace packet
 
             ~BaseClass();
 
-            void print_memory();    // print information about memory
+            void print_memory(); // print information about memory
 
-            void fit_memory();      // manage memory reallocate equal size of vector
+            void fit_memory(); // manage memory reallocate equal size of vector
 
-            void resize();          // resize vector
+            void resize( unsigned int size ); // resize vector
 
-            void reserve();         // allocate memory for vector
+            void clear(); // clear or delete all element
 
-            void print_data();      // print all element in vector
+            void reserve( unsigned int size ); // allocate memory for vector
 
-            void push();            // add data to last element
+            void print_data( std::string message = "MEMBER : "); // print all element in vector
+
+            void push( vector_type data ); // add single data to last element
+
+            template< typename... pack_type >
+            void push( vector_type data , pack_type... pack ); // add vary data to last element
 
             reference operator[]( unsigned int position ); // access n
 
             std::vector< vector_type >* pointer(); // return pointer of vector
 
         protected:
-            std::vector< vector_type >
+            std::vector< vector_type > vector;
 
     }; // BaseClass object
 

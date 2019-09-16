@@ -11,6 +11,7 @@
 //  ref01   : https://en.cppreference.com/w/cpp/container/vector/operator_at
 //  ref02   : http://www.cplusplus.com/reference/ios/ios_base/width/
 //  ref03   : http://www.cplusplus.com/reference/vector/vector/begin/
+//  ref04   : https://bytefreaks.net/programming-2/c/c-how-to-print-an-unsigned-character-unsigned-byte-uint8_t-using-cout
 
 // MACRO SET
 

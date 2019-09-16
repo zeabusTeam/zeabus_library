@@ -47,6 +47,8 @@ namespace packet
             // Init protocal of IMU packet
             void init_header();
 
+            std::vector< unsigned char >::iterator end();
+
         protected:
             unsigned char MSB;
             unsigned char LSB;

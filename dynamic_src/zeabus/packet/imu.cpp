@@ -70,6 +70,11 @@ namespace packet
         } // loop check sum
     } // Imu::find_check_sum()
     
+    std::vector< unsigned char >::iterator Imu::end()
+    {
+        return this->vector.end();
+    } // imu::end
+
 
 } // namespace packet 
 

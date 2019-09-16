@@ -13,11 +13,7 @@
 
 // MACRO CONDITION
 
-#include    <zeabus/sensor/IMU/connector.hpp>
-
-#include    <zeabus/escape_code.hpp>
-
-#include    <ros/ros.h>
+#include    <zeabus/sensor/imu/connector.hpp>
 
 namespace zeabus
 {
@@ -42,7 +38,7 @@ namespace imu
     {
         // prepare packet for set_idle command
         this->sender.init_header();
-        this->sender.push( _imu_protocol::COMMAND::BASE::DESCRIPTION , 0x02 , 0x02 ,
+        this->sender.push( _imu_protocol::COMMAND::BASE::DESCRIPTOR , 0x02 , 0x02 ,
                 _imu_protocol::COMMAND::BASE::IDLE );
         this->sender.add_check_sum();
 
@@ -96,7 +92,7 @@ namespace imu
                 0x05 , _imu_protocol::COMMAND::SENSOR::CONTINUOUS , 0x01 , 0x03 , 0x00 );
         this->sender.add_check_sum();
 
-        bool result = this->connector( round , "enable_imu_data_stream" );
+        bool result = this->connect( round , "enable_imu_data_stream" );
         return result;
     } // Connector::enable_imu_data_stream
 
@@ -111,11 +107,11 @@ namespace imu
             this->sender.init_header();
             this->sender.push( _imu_protocol::COMMAND::SENSOR::DESCRIPTOR , 0x04 , 0x04 ,
                     _imu_protocol::COMMAND::SENSOR::CAPTURE_GYRO_BIAS , 0x0b , 0xb8 );
-            this->add_check_sum();
+            this->sender.add_check_sum();
 
             unsigned int num_check; 
             num_check = this->write_data( this->sender.pointer() , this->sender.size() );
-            if( num_check != ( this->data.size() ) )
+            if( num_check != ( this->sender.size() ) )
             {
                 std::cout   << "Failure to write data for capture gyro bias\n";
                 result = false;
@@ -165,13 +161,14 @@ namespace imu
         if( result )
         {
             this->sender.add_check_sum();
-            num_check = this->write_data( this->sender.pointer() , this->sender.size() );
+            unsigned int num_check = this->write_data( this->sender.pointer() , 
+                    this->sender.size() );
             if( num_check == this->sender.size() )
             {
                 result = false;
                 while( (! result ) && ros::ok() )
                 {
-                    if( this->reade_reply( this->sender[2] ) )
+                    if( this->read_reply( this->sender[2] ) )
                     {
                         if( ( this->reader[6] == 0x38 ) && ( this->reader[7] == 0x00 ) )
                         {

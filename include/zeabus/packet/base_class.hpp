@@ -65,8 +65,6 @@ namespace packet
 
             std::vector< vector_type >* pointer(); // return pointer of vector
 
-            std::vector< vectpr_type >::iterator end();
-
         protected:
             std::vector< vector_type > vector;
 

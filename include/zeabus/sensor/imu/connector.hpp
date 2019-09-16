@@ -13,11 +13,15 @@
 
 // MACRO CONDITION
 
-#include    <zeabus/sensor/synchronous_port.hpp>
+#include    <ros/ros.h>
 
 #include    <zeabus/packet/imu.hpp>
 
-#include    <zeabus/sensor/IMU/LORD_IMU_COMMUNICATION.hpp>
+#include    <zeabus/escape_code.hpp>
+
+#include    <zeabus/serial/synchronous_port.hpp>
+
+#include    <zeabus/sensor/imu/LORD_IMU_COMMUNICATION.hpp>
 
 namespace _imu_protocol = zeabus::sensor::imu::LORD_MICROSTRAIN;
 
@@ -67,7 +71,7 @@ namespace imu
             bool read_reply( unsigned char descriptor_byte );
 
             // connect will manage about send data and read data compare for you
-            void connect();
+            bool connect( unsigned int round , std::string function );
             zeabus::packet::Imu sender;
             zeabus::packet::Imu reader;
 

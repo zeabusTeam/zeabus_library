@@ -53,6 +53,8 @@ namespace packet
 
             void push( vector_type data ); // add single data to last element
 
+            unsigned int size(); // return size of element in vector
+
             template< typename... pack_type >
             void push( vector_type data , pack_type... pack ); // add vary data to last element
 

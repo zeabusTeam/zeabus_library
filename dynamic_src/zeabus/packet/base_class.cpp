@@ -94,6 +94,12 @@ namespace packet
     } // BaseClass< vector_type >::operator[]
 
     template< class vector_type >
+    unsigned int BaseClass< vector_type >::size()
+    {
+        return this->vector.size();
+    } // BaseClass< vector >::size()
+
+    template< class vector_type >
     std::vector< vector_type >* BaseClass<vector_type>::pointer()
     {
         return &( this->vector );

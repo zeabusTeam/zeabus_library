@@ -49,6 +49,8 @@ namespace packet
 
             void reserve( unsigned int size ); // allocate memory for vector
 
+            void print_data_hex( std::string message = "MEMBER : ");
+
             void print_data( std::string message = "MEMBER : "); // print all element in vector
 
             void push( vector_type data ); // add single data to last element

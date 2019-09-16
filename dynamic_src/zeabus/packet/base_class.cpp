@@ -63,6 +63,17 @@ namespace packet
     } // BaseClass< vector_type >::clear
 
     template< class vector_type >
+    void BaseClass< vector_type >::print_data_hex( std::string message )
+    {
+        std::cout   << message << std::hex;
+        for( auto it = this->vector.begin() ; it != this->vector.end() ; it++ )
+        {
+            std::cout   << unsigned( *it ) << ' ';
+        }
+        std::cout   << "\n" << std::dec ;
+    }
+
+    template< class vector_type >
     void BaseClass< vector_type >::print_data( std::string message )
     {
         std::cout   << message;

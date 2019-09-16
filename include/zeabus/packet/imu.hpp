@@ -15,7 +15,7 @@
 
 #include    <zeabus/packet/base_class.hpp>
 
-#include    <zeabus/sensor/imu::LORD_IMU_COMMUNICATION.hpp>
+#include    <zeabus/sensor/imu/LORD_IMU_COMMUNICATION.hpp>
 
 namespace _imu_protocol = zeabus::sensor::imu::LORD_MICROSTRAIN;
 
@@ -39,12 +39,17 @@ namespace packet
             // This function use to check_sum in pattern of IMU Loard Microstrain Protocol
             //  function check_sum() will compare with last two element
             //  function check_sum( 2 parameter ) will find check sum all packet and checkt it
-            void check_sum( );
+            bool check_sum( );
 
-            void check_sum( unsigned char MSB, unsigned char LSB );
+            bool check_sum( unsigned char MSB, unsigned char LSB );
+
+            void add_check_sum();
 
             // This will calculate check sum and collect at this->MSB and this->LSB
             void find_check_sum( unsigned int size_packet );
+
+            // Init protocal of IMU packet
+            void init_header();
 
         protected:
             unsigned char MSB;
@@ -55,5 +60,7 @@ namespace packet
 } // namespace packet
 
 } // namespace zeabus
+
+#include    <zeabus/packet/imu.cpp>
 
 #endif // _ZEABUS_PACKET_IMU_HPP__

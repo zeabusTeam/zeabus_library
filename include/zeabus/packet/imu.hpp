@@ -15,10 +15,6 @@
 
 #include    <zeabus/packet/base_class.hpp>
 
-#include    <zeabus/sensor/imu/LORD_IMU_COMMUNICATION.hpp>
-
-namespace _imu_protocol = zeabus::sensor::imu::LORD_MICROSTRAIN;
-
 #ifndef _ZEABUS_PACKET_IMU_HPP__
 #define _ZEABUS_PACKET_IMU_HPP__
 

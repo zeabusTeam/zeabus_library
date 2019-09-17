@@ -52,11 +52,9 @@ namespace serial
     {
 
         boost::system::error_code boost_error;
-
-        unsigned int size_data = boost::asio::read( this->io_port ,
+        unsigned int size_data = boost::asio::write( this->io_port ,
                 boost::asio::buffer( *buffer , size ) ,
                 boost_error );
-
         *error_code = boost_error.value();
 
         return size_data;

@@ -75,6 +75,10 @@ namespace packet
         return this->vector.end();
     } // imu::end
 
+    std::vector< unsigned char >::iterator Imu::begin()
+    {
+        return this->vector.begin();
+    } // imu::begin
 
 } // namespace packet 
 

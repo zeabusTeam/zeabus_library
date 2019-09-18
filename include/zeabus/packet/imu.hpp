@@ -49,6 +49,8 @@ namespace packet
 
             std::vector< unsigned char >::iterator end();
 
+            std::vector< unsigned char >::iterator begin();
+
         protected:
             unsigned char MSB;
             unsigned char LSB;

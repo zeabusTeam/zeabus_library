@@ -58,9 +58,12 @@ namespace imu
 
             bool enable_imu_data_stream( unsigned int round = 5 );
 
-            bool read_stream();
+            // read_stream will return pointer to start at packet payload
+            bool read_stream( std::vector< unsigned char>::iterator* pointer);
 
             bool capture_gyro_bias();
+
+            bool read_gyro_bias( float* first , float* second , float* third );
 
         protected:
             unsigned char front_rate;

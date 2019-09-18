@@ -194,6 +194,18 @@ namespace imu
         return result;
     } // Connector::capture_gyro_bias 
 
+    bool Connector::read_gyro_bias( float* first , float* second , float* third )
+    {
+        // prepare packet for send and get current setting gyro bias
+        this->sender.init_header();
+        this->sender.push( _imu_protocol::COMMAND::SENSOR::DESCRIPTOR , 0x03 , 0x03 ,
+                _imu_protocol::COMMAND::SENSOR::GYRO_BIAS , 0x02 );
+        this->sender.add_check_sum();
+
+        bool result = this->connect( 5 , "read_gyro_bias");
+        return result;
+    } // Connector::read_gyro_bias
+
     // Function for easy connect to imu by write and read
     bool Connector::connect( unsigned int round , std::string function )
     {
@@ -266,6 +278,16 @@ namespace imu
         }
         return result;
     } // Connector::read_reply
+
+    bool Connector::read_stream( std::vector< unsigned char>::iterator* pointer)
+    {
+        bool result = this->read_reply( 0x80 );
+        if( result ) // If true that mean already check sum for you
+        {
+            *pointer = this->reader.begin() + 5;
+        }
+        return result;
+    } // Connector::read_stream
 
 } // namespace imu
 

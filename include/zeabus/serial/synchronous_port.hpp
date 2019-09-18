@@ -14,6 +14,7 @@
 
 // REFERENCE
 //  ref01 : https://theboostcpplibraries.com/boost.system
+//  ref02 : https://en.cppreference.com/w/cpp/language/try_catch
 
 // MACRO SET
 

@@ -96,6 +96,18 @@ namespace imu
         return result;
     } // Connector::enable_imu_data_stream
 
+    bool Connector::resume( unsigned int round )
+    {
+        // prepare packet for resume
+        this->sender.init_header();
+        this->sender.push( _imu_protocol::COMMAND::BASE::DESCRIPTOR , 0x02 , 0x02 ,
+                _imu_protocol::COMMAND::BASE::RESUME );
+        this->sender.add_check_sum();
+
+        bool result = this->connect( round , "resume" );
+        return result;
+    }
+
     bool Connector::capture_gyro_bias()
     {
         std::cout   << "Start capture gyro bias\n";
@@ -237,7 +249,7 @@ namespace imu
             this->reader.init_header();
             this->reader.push( buffer[0] , buffer[1] );
 
-            size = buffer[1] + 2; // Payload length and check sum
+            size = this->reader[3] + 2; // Payload length and check sum
             size = this->read_data( &buffer , size );
             if( size != buffer.size() ) continue;
 
@@ -253,7 +265,7 @@ namespace imu
             break;
         }
         return result;
-    }
+    } // Connector::read_reply
 
 } // namespace imu
 

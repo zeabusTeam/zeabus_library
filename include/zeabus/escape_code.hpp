@@ -21,6 +21,8 @@
 
 // MACRO CONDITION
 
+#include    <iostream>
+
 #ifndef _ZEABUS_ESCAPE_CODE_HPP_
 #define _ZEABUS_ESCAPE_CODE_HPP_
 

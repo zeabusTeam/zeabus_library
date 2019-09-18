@@ -40,7 +40,10 @@ namespace serial
                 boost::asio::buffer( *buffer , size ) ,
                 boost_error );
 
-        *error_code = boost_error.value();
+        if( error_code != NULL )
+        {
+            *error_code = boost_error.value();
+        }
 
         return size_data;
 
@@ -55,7 +58,11 @@ namespace serial
         unsigned int size_data = boost::asio::write( this->io_port ,
                 boost::asio::buffer( *buffer , size ) ,
                 boost_error );
-        *error_code = boost_error.value();
+
+        if( error_code != NULL )
+        {
+            *error_code = boost_error.value();
+        }
 
         return size_data;
     }  // function write_data

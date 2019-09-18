@@ -11,6 +11,7 @@ find_package( zeabus_utility REQUIRED COMPONENTS )
 set( SHARED_LIBS
     SynchronousPort
     ImuConnector
+    Convert
 )
 
 set( zeabus_library_include_path 

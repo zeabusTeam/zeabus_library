@@ -12,6 +12,7 @@ set( SHARED_LIBS
     SynchronousPort
     ImuConnector
     Convert
+    Ros
 )
 
 set( zeabus_library_include_path 

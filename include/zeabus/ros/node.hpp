@@ -8,6 +8,8 @@
 // README
 
 // REFERENCE
+//  ref01 : https://en.cppreference.com/w/cpp/thread/thread/join
+//  ref02 : https://en.cppreference.com/w/cpp/error/system_error
 
 // MACRO SET
 
@@ -24,10 +26,7 @@
 #ifndef _ZEABUS_ROS_NODE_HPP__
 #define _ZEABUS_ROS_NODE_HPP__
 
-namespace zeabus
-{
-
-namespace ros
+namespace zeabus_ros
 {
 
     class Node
@@ -38,7 +37,7 @@ namespace ros
 
             ~Node();
 
-            bool spin();
+            void spin();
 
             void join();
 
@@ -51,8 +50,6 @@ namespace ros
             std::thread thread_id;
 
     }; // class object Node
-
-} // namespace ros
 
 } // namespace zeabus
 

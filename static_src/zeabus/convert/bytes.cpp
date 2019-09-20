@@ -24,6 +24,18 @@ namespace convert
 namespace bytes
 {
 
+    bool to_float( std::vector< unsigned char >::iterator data , 
+            float* answer ,
+            unsigned int offset )
+    {
+        unsigned long int data32 = ( ( unsigned long int ) (*( data + 0 )) << 24 ) | 
+                ( ( unsigned long int ) (*( data + 1 )) << 16 ) | 
+                ( ( unsigned long int ) (*( data + 2 )) << 8 ) | 
+                ( ( unsigned long int ) (*( data + 3 )) << 0 );
+
+        return true; // Always return true because iterator can't check for you
+    }
+
     bool to_float( std::vector< unsigned char >* data ,
             float* answer ,
             unsigned int offset )

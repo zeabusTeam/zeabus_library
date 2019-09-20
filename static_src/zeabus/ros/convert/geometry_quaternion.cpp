@@ -31,7 +31,7 @@ namespace geometry_quaternion
         (void)zeabus::convert::bytes::to_float( point , &message_ptr->w , 0 );
         (void)zeabus::convert::bytes::to_float( point , &message_ptr->x , 4 );
         (void)zeabus::convert::bytes::to_float( point , &message_ptr->y , 8 );
-        (void)zeabus::convert::bytes:;to_float( point , &message_ptr->z , 12 );
+        (void)zeabus::convert::bytes::to_float( point , &message_ptr->z , 12 );
     } // function bytes type source vector unsigned char and message Vector3
 
 } // namespace geometry_quaternion

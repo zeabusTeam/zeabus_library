@@ -46,6 +46,10 @@ namespace bytes
             float* answer , 
             unsigned int offset = 0 );
 
+    bool to_float( std::vector< unsigned char>::iterator data ,
+            double* answer , 
+            unsigned int offset = 0 );
+
 } // namespace bytes
 
 } // namespace convert

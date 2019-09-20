@@ -32,7 +32,21 @@ namespace bytes
                 ( ( unsigned long int ) (*( data + offset + 1 )) << 16 ) | 
                 ( ( unsigned long int ) (*( data + offset + 2 )) << 8 ) | 
                 ( ( unsigned long int ) (*( data + offset + 3 )) << 0 );
+        memcpy( answer , &data32 , 4 );
+        return true; // Always return true because iterator can't check for you
+    }
 
+    bool to_float( std::vector< unsigned char >::iterator data , 
+            double* answer ,
+            unsigned int offset )
+    {
+        unsigned long int data32 = ( ( unsigned long int ) (*( data + offset + 0 )) << 24 ) | 
+                ( ( unsigned long int ) (*( data + offset + 1 )) << 16 ) | 
+                ( ( unsigned long int ) (*( data + offset + 2 )) << 8 ) | 
+                ( ( unsigned long int ) (*( data + offset + 3 )) << 0 );
+        float temp;
+        memcpy( &temp , &data32 , 4 );
+        *answer = temp;
         return true; // Always return true because iterator can't check for you
     }
 

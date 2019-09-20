@@ -13,7 +13,7 @@
 
 // MACRO CONDITION
 
-#include    <zeabus/ros/convert/sensr_imu.hpp>
+#include    <zeabus/ros/convert/sensor_imu.hpp>
 
 namespace zeabus_ros
 {

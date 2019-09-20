@@ -30,7 +30,7 @@ namespace geometry_vector3
     {
         (void)zeabus::convert::bytes::to_float( point , &message_ptr->x , 0 );
         (void)zeabus::convert::bytes::to_float( point , &message_ptr->y , 4 );
-        (void)zeabus::convert::bytes:;to_float( point , &message_ptr->z , 8 );
+        (void)zeabus::convert::bytes::to_float( point , &message_ptr->z , 8 );
     } // function bytes type source vector unsigned char and message Vector3
 
 } // namespace geometry_vector3

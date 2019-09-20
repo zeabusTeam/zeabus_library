@@ -1,7 +1,7 @@
-#ZEABUS LIBRARY PACKAGE ## zeabus/ros
-This package is main to apply or develop for utility in ros system.
-I try to manage about namespace to help memory and easy for use.
-In purpose of namespace is will help about can show purpose of function and scope of namespace.
+#ZEABUS LIBRARY PACKAGE ROS <br/>
+This package is main to apply or develop for utility in ros system. <br/>
+I try to manage about namespace to help memory and easy for use.<br/>
+In purpose of namespace is will help about can show purpose of function and scope of namespace.<br/>
 
 ##History of Distribution
 

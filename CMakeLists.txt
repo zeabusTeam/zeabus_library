@@ -12,7 +12,11 @@ set( SHARED_LIBS
     SynchronousPort
     ImuConnector
     Convert
+)
+
+set( ROS_LIBS
     Ros
+    RosConvert
 )
 
 set( zeabus_library_include_path 
@@ -25,7 +29,7 @@ set( zeabus_library_dynamic_source
 
 catkin_package(
     INCLUDE_DIRS ${zeabus_library_include_path} ${zeabus_library_dynamic_source}
-    LIBRARIES ${SHARED_LIBS}
+    LIBRARIES ${SHARED_LIBS} ${ROS_LIBS}
     CATKIN_DEPENDS zeabus_utility roscpp tf
     DEPENDS Boost
 )

@@ -1,0 +1,42 @@
+// FILE			: geometry_quaternion.hpp
+// AUTHOR		: K.Supasan
+// CREATE ON	: 2019, September 20 (UTC+0)
+// MAINTAINER	: K.Supasan
+
+// MACRO DETAIL
+
+// README
+
+// REFERENCE
+
+// MACRO SET
+
+// MACRO CONDITION
+
+#include    <geometry_msgs/Quaternion.h>
+
+#include    <zeabus/convert/bytes.hpp>
+
+#ifndef _ZEABUS_ROS_CONVERT_GEOMETRY_QUATERNION_HPP__
+#define _ZEABUS_ROS_CONVERT_GEOMETRY_QUATERNION_HPP__
+
+namespace zeabus_ros
+{
+
+namespace convert
+{
+
+namespace geometry_quaternion 
+{
+
+    bool bytes( std::vector< unsigned char >::iterator point , 
+            geometry_msgs::Quaternion* message_ptr ,
+            unsigned int offset ); 
+
+} // namespace geometry_quaternion
+
+} // namespace convert
+
+} // namespace zeabus_ros
+
+#endif // _ZEABUS_ROS_CONVERT_GEOMETRY_QUATERNION_HPP__

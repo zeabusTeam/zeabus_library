@@ -3,5 +3,7 @@ add_library( Ros SHARED
 )
 
 target_link_libraries( Ros
-    ${Boost_LIBRARIES}
+    ${catkin_LIBRARIES}
 )
+
+add_subdirectory( convert )

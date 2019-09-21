@@ -59,7 +59,8 @@ namespace imu
             bool enable_imu_data_stream( unsigned int round = 5 );
 
             // read_stream will return pointer to start at packet payload
-            bool read_stream( std::vector< unsigned char>::iterator* pointer);
+            bool read_stream( std::vector< unsigned char>::iterator* pointer ,
+                    std::vector< unsigned char >::iterator* last_point);
 
             bool capture_gyro_bias();
 
@@ -74,6 +75,7 @@ namespace imu
             bool read_reply( unsigned char descriptor_byte );
 
             // connect will manage about send data and read data compare for you
+            //  In current version connect have setup to check ack / nack on last - 3
             bool connect( unsigned int round , std::string function );
             zeabus::packet::Imu sender;
             zeabus::packet::Imu reader;

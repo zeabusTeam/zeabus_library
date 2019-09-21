@@ -31,7 +31,7 @@ namespace geometry_quaternion
 
     bool bytes( std::vector< unsigned char >::iterator point , 
             geometry_msgs::Quaternion* message_ptr ,
-            unsigned int offset ); 
+            unsigned int offset = 0); 
 
 } // namespace geometry_quaternion
 

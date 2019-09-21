@@ -32,7 +32,7 @@ namespace geometry_vector3
 
     bool bytes( std::vector< unsigned char >::iterator point , 
             geometry_msgs::Vector3* message_ptr ,
-            unsigned int offset ); 
+            unsigned int offset = 0 ); 
 
 } // namespace geometry_vector3
 

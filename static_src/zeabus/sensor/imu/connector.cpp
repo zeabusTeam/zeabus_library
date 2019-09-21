@@ -279,12 +279,14 @@ namespace imu
         return result;
     } // Connector::read_reply
 
-    bool Connector::read_stream( std::vector< unsigned char>::iterator* pointer)
+    bool Connector::read_stream( std::vector< unsigned char>::iterator* pointer ,
+            std::vector< unsigned char >::iterator* last_point )
     {
         bool result = this->read_reply( 0x80 );
         if( result ) // If true that mean already check sum for you
         {
             *pointer = this->reader.begin() + 5;
+            *last_point = this->reader.end() - 2;
         }
         return result;
     } // Connector::read_stream

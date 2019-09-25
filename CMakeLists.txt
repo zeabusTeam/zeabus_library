@@ -12,6 +12,7 @@ set( SHARED_LIBS
     SynchronousPort
     ImuConnector
     Convert
+    Ahrs
 )
 
 set( ROS_LIBS

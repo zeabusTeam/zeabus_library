@@ -5,3 +5,5 @@ add_subdirectory( convert )
 add_subdirectory( sensor )
 
 add_subdirectory( ros )
+
+add_subdirectory( math )

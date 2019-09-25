@@ -20,6 +20,8 @@
 
 #include    <cmath>
 
+#include    <zeabus/math/ahrs/inverse_sqrt.hpp>
+
 #ifndef _ZEABUS_MATH_AHRS_MADGWICK_HPP__
 #define _ZEABUS_MATH_AHRS_MADGWICK_HPP__
 

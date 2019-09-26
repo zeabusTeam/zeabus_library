@@ -27,6 +27,8 @@ namespace math
 namespace ahrs
 {
 
+    float invSqrt( float x );
+
 } // namespace ahrs
 
 } // namespace math

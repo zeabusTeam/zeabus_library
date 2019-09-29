@@ -41,7 +41,7 @@ namespace zeabus_ros
     //  shutdown before
     void Node::join()
     {
-        if( ! ros::ok() )
+        if( ( ! ros::ok() ) & this->state )
         {
             try
             {

@@ -22,6 +22,7 @@ namespace zeabus_ros
     {
         ros::init( argv , argc , node_name );
         this->node_name = node_name;
+        this->state = false;
     } // Node::Node
 
     Node::~Node()
@@ -33,6 +34,7 @@ namespace zeabus_ros
     void Node::spin()
     {
         this->thread_id = std::thread( std::bind( &zeabus_ros::Node::thread_spin , this ) );
+        this->state = true;
     } // Node::spin
 
     // Because this object have purpose to activate spin by other thread that mean ros will
@@ -44,6 +46,7 @@ namespace zeabus_ros
             try
             {
                 this->thread_id.join();
+                this->state = false;
             }
             catch( const std::system_error& e)
             {

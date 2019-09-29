@@ -49,6 +49,8 @@ namespace zeabus_ros
 
             std::thread thread_id;
 
+            bool state; // If you spin will true if you join will false
+
     }; // class object Node
 
 } // namespace zeabus

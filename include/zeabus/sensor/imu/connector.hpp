@@ -66,6 +66,9 @@ namespace imu
 
             bool read_gyro_bias( float* first , float* second , float* third );
 
+            zeabus::packet::Imu sender;
+            zeabus::packet::Imu reader;
+
         protected:
             unsigned char front_rate;
             unsigned char back_rate;
@@ -77,8 +80,6 @@ namespace imu
             // connect will manage about send data and read data compare for you
             //  In current version connect have setup to check ack / nack on last - 3
             bool connect( unsigned int round , std::string function );
-            zeabus::packet::Imu sender;
-            zeabus::packet::Imu reader;
 
     }; // zeabus::sensor::imu::Connector object
 

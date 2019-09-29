@@ -28,9 +28,10 @@ namespace geometry_vector3
             geometry_msgs::Vector3* message_ptr , 
             unsigned int offset )
     {
-        (void)zeabus::convert::bytes::to_float( point , &message_ptr->x , 0 );
-        (void)zeabus::convert::bytes::to_float( point , &message_ptr->y , 4 );
-        (void)zeabus::convert::bytes::to_float( point , &message_ptr->z , 8 );
+        (void)zeabus::convert::bytes::to_float( point , &message_ptr->x , 0 + offset);
+        (void)zeabus::convert::bytes::to_float( point , &message_ptr->y , 4 + offset);
+        (void)zeabus::convert::bytes::to_float( point , &message_ptr->z , 8 + offset);
+        return true;
     } // function bytes type source vector unsigned char and message Vector3
 
 } // namespace geometry_vector3

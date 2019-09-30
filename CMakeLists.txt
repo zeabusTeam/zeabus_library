@@ -3,6 +3,9 @@ project( zeabus_library )
 
 find_package( catkin REQUIRED COMPONENTS 
     roscpp
+    rospy
+    geometry_msgs
+    sensor_msgs
 )
 
 find_package( Boost REQUIRED COMPONENTS )
@@ -31,9 +34,11 @@ set( zeabus_library_dynamic_source
 catkin_package(
     INCLUDE_DIRS ${zeabus_library_include_path} ${zeabus_library_dynamic_source}
     LIBRARIES ${SHARED_LIBS} ${ROS_LIBS}
-    CATKIN_DEPENDS zeabus_utility roscpp tf
+    CATKIN_DEPENDS zeabus_utility roscpp tf sensor_msgs geometry_msgs
     DEPENDS Boost
 )
+
+catkin_python_setup()
 
 set( CMAKE_CXX_FLAGS "-Wall -std=c++14")
 

@@ -256,6 +256,21 @@ end_update:
         return;
     } // function Madgwick::update 
 
+    void Madgwick::regis_data( double* w , double* x , double* y , double* z)
+    {
+        this->w = w;
+        this->x = x;
+        this->y = y;
+        this->z = z;
+    } // function Madgwick::update
+
+    void Madgwick::get_value()
+    {
+        *this->w = this->q0;
+        *this->x = this->q1;
+        *this->y = this->q2;
+        *this->z = this->q3;
+    } // function Madgwick::get_value
 
 } // namespace ahrs
 

@@ -44,10 +44,15 @@ namespace ahrs
                     float mx , float my , float mz , 
                     double sampleFreq );
 
+            void regis_data( double* w , double* x , double* y , double* z );
+
+            void get_value();
+
             void update( float gx , float gy , float gz , float ax , float ay , float az ,
                     double sampleFreq );
 
         protected:
+            double *w, *x, *y, *z;
             float q0, q1, q2, q3;
             float beta;
 

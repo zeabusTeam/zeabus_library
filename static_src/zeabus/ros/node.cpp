@@ -57,10 +57,10 @@ namespace zeabus_ros
 
     void Node::thread_spin()
     {
-        std::cout   << zeabus::escape_code::normal_margenta << this->node_name
+        std::cout   << zeabus::escape_code::normal_blue << this->node_name
                     << " start spin thread\n" << zeabus::escape_code::normal_white;
         ros::spin();
-        std::cout   << zeabus::escape_code::normal_margenta << this->node_name
+        std::cout   << zeabus::escape_code::normal_blue << this->node_name
                     << " end spin thread\n" << zeabus::escape_code::normal_white;
     } // Node::thread_spin
 

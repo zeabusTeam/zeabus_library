@@ -25,7 +25,7 @@ namespace ahrs
 {
 
     Mahony::Mahony( float q0 , float q1 , float q2 , float q3 ,
-            float twoKp , float twoKi )
+            float sampleFreq , float twoKp , float twoKi )
     {
         this->q0 = q0;
         this->q1 = q1;
@@ -36,12 +36,12 @@ namespace ahrs
         this->integralFBx = 0;
         this->integralFBy = 0;
         this->integralFBz = 0;
+        this->sampleFreq = sampleFreq;
     } // iniial function of object
 
     void Mahony::update( float gx , float gy , float gz ,
             float ax , float ay , float az ,
-            float mx , float my , float mz ,
-            float sampleFreq )
+            float mx , float my , float mz )
     {
 
         float recipNorm;
@@ -55,7 +55,7 @@ namespace ahrs
         // (avoids NaN in magnetometer normalisation)
         if( (mx == 0.0f) && (my == 0.0f) && (mz == 0.0f) ) 
         {
-            this->update(gx, gy, gz, ax, ay, az , sampleFreq );
+            this->update(gx, gy, gz, ax, ay, az );
             goto end_update;
         }
 
@@ -111,9 +111,9 @@ namespace ahrs
             // Compute and apply integral feedback if enabled
             if(twoKi > 0.0f) {
                 // integral error scaled by Ki
-                integralFBx += twoKi * halfex * (1.0f / sampleFreq);	
-                integralFBy += twoKi * halfey * (1.0f / sampleFreq);
-                integralFBz += twoKi * halfez * (1.0f / sampleFreq);
+                integralFBx += twoKi * halfex * (1.0f / this->sampleFreq);	
+                integralFBy += twoKi * halfey * (1.0f / this->sampleFreq);
+                integralFBz += twoKi * halfez * (1.0f / this->sampleFreq);
                 gx += integralFBx;	// apply integral feedback
                 gy += integralFBy;
                 gz += integralFBz;
@@ -131,9 +131,9 @@ namespace ahrs
         }
         
         // Integrate rate of change of quaternion
-        gx *= (0.5f * (1.0f / sampleFreq));		// pre-multiply common factors
-        gy *= (0.5f * (1.0f / sampleFreq));
-        gz *= (0.5f * (1.0f / sampleFreq));
+        gx *= (0.5f * (1.0f / this->sampleFreq));		// pre-multiply common factors
+        gy *= (0.5f * (1.0f / this->sampleFreq));
+        gz *= (0.5f * (1.0f / this->sampleFreq));
         qa = q0;
         qb = q1;
         qc = q2;
@@ -154,8 +154,7 @@ end_update:
     } // update 
 
     void Mahony::update( float gx , float gy , float gz ,
-            float ax , float ay , float az ,
-            float sampleFreq )
+            float ax , float ay , float az )
     {
 
         float recipNorm;
@@ -185,9 +184,9 @@ end_update:
             // Compute and apply integral feedback if enabled
             if(twoKi > 0.0f) {
                 // integral error scaled by Ki
-                integralFBx += twoKi * halfex * (1.0f / sampleFreq);	
-                integralFBy += twoKi * halfey * (1.0f / sampleFreq);
-                integralFBz += twoKi * halfez * (1.0f / sampleFreq);
+                integralFBx += twoKi * halfex * (1.0f / this->sampleFreq);	
+                integralFBy += twoKi * halfey * (1.0f / this->sampleFreq);
+                integralFBz += twoKi * halfez * (1.0f / this->sampleFreq);
                 gx += integralFBx;	// apply integral feedback
                 gy += integralFBy;
                 gz += integralFBz;
@@ -205,9 +204,9 @@ end_update:
         }
         
         // Integrate rate of change of quaternion
-        gx *= (0.5f * (1.0f / sampleFreq));		// pre-multiply common factors
-        gy *= (0.5f * (1.0f / sampleFreq));
-        gz *= (0.5f * (1.0f / sampleFreq));
+        gx *= (0.5f * (1.0f / this->sampleFreq));		// pre-multiply common factors
+        gy *= (0.5f * (1.0f / this->sampleFreq));
+        gz *= (0.5f * (1.0f / this->sampleFreq));
         qa = q0;
         qb = q1;
         qc = q2;

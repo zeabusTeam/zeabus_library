@@ -15,6 +15,8 @@
 
 #include    <zeabus/math/ahrs/madgwick.hpp>
 
+#include    <iostream>
+
 namespace zeabus
 {
 
@@ -24,19 +26,20 @@ namespace math
 namespace ahrs
 {
 
-    Madgwick::Madgwick( float q0 , float q1 , float q2, float q3 , float beta )
+    Madgwick::Madgwick( float q0 , float q1 , float q2, float q3 , 
+            float sampleFreq , float beta )
     {
         this->q0 = q0;
         this->q1 = q1;
         this->q2 = q2;
         this->q3 = q3;
         this->beta = beta;
+        this->sampleFreq = sampleFreq;
     } // function Madgwick::Madgwick 
 
     void Madgwick::update( float gx , float gy , float gz , // Gravity
             float ax , float ay , float az , // Acceleration
-            float mx, float my, float mz , // Magnetic
-            double sampleFreq ) // period time or different time
+            float mx, float my, float mz ) // Magnetic
     {
         float recipNorm;
         float s0, s1, s2, s3;
@@ -46,12 +49,12 @@ namespace ahrs
         float _2q0mx, _2q0my, _2q0mz, _2q1mx, _2bx, _2bz, _4bx, _4bz;
         float _2q0, _2q1, _2q2, _2q3;
         float _2q0q2, _2q2q3, q0q0, q0q1, q0q2, q0q3, q1q1, q1q2, q1q3, q2q2, q2q3, q3q3;
-        
+
         // Use IMU algorithm if magnetometer measurement invalid 
         //  (avoids NaN in magnetometer normalisation)
         if((mx == 0.0f) && (my == 0.0f) && (mz == 0.0f)) 
         {
-            this->update(gx, gy, gz, ax, ay, az , sampleFreq ); 
+            this->update(gx, gy, gz, ax, ay, az ); 
             // Don't worry because overload function
             goto end_update;
         }
@@ -161,10 +164,10 @@ namespace ahrs
         } // end condition not have acceleration = 0
         
         // Integrate rate of change of quaternion to yield quaternion
-        q0 += qDot1 * (1.0f / sampleFreq);
-        q1 += qDot2 * (1.0f / sampleFreq);
-        q2 += qDot3 * (1.0f / sampleFreq);
-        q3 += qDot4 * (1.0f / sampleFreq);
+        q0 += qDot1 * (1.0f / this->sampleFreq);
+        q1 += qDot2 * (1.0f / this->sampleFreq);
+        q2 += qDot3 * (1.0f / this->sampleFreq);
+        q3 += qDot4 * (1.0f / this->sampleFreq);
         
         // Normalise quaternion
         recipNorm = invSqrt(q0 * q0 + q1 * q1 + q2 * q2 + q3 * q3);
@@ -178,8 +181,7 @@ end_update:
     } // function Madgwick::update
 
     void Madgwick::update( float gx , float gy , float gz , // gravity 
-            float ax , float ay , float az , // acceleration
-            double sampleFreq ) // period time
+            float ax , float ay , float az ) // acceleration
     {
         float recipNorm;
         float s0, s1, s2, s3;
@@ -242,10 +244,10 @@ end_update:
         }
        
         // Integrate rate of change of quaternion to yield quaternion
-        q0 += qDot1 * (1.0f / sampleFreq);
-        q1 += qDot2 * (1.0f / sampleFreq);
-        q2 += qDot3 * (1.0f / sampleFreq);
-        q3 += qDot4 * (1.0f / sampleFreq);
+        q0 += qDot1 * (1.0f / this->sampleFreq);
+        q1 += qDot2 * (1.0f / this->sampleFreq);
+        q2 += qDot3 * (1.0f / this->sampleFreq);
+        q3 += qDot4 * (1.0f / this->sampleFreq);
        
         // Normalise quaternion
         recipNorm = invSqrt(q0 * q0 + q1 * q1 + q2 * q2 + q3 * q3);

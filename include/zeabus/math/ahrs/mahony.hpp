@@ -36,18 +36,17 @@ namespace ahrs
 
         public:
             Mahony( float q0 , float q1 , float q2 , float q3 , // quaternion w ,x  ,y ,z)
-                    float twoKp , float twoKi );
+                    float sampleFreq , float twoKp , float twoKi );
 
             void update( float gx , float gy ,float gz , // gravity
                     float ax , float ay , float az , // acceleration
-                    float mx , float my , float mz , // magnetic
-                    float sampleFreq ); // time period
+                    float mx , float my , float mz ); // magnetic
 
             void update( float gx , float gy , float gz , // gravity 
-                    float ax , float ay , float az , // acceleration
-                    float sampleFreq ); // time period
+                    float ax , float ay , float az ); // acceleration
 
         protected:
+            float sampleFreq;
             float q0 , q1 , q2 , q3 ;
             float twoKp , twoKi;
             float integralFBx , integralFBy , integralFBz;

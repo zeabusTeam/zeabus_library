@@ -38,23 +38,23 @@ namespace ahrs
     {
         public:
 
-            Madgwick( float q0 , float q1 , float q2 , float q3 , float beta = 0.1f );
+            Madgwick( float q0 , float q1 , float q2 , float q3 , 
+                    float sampleFreq , float beta = 0.1f );
 
             void update( float gx , float gy , float gz , float ax , float ay , float az ,
-                    float mx , float my , float mz , 
-                    double sampleFreq );
+                    float mx , float my , float mz ); 
 
             void regis_data( double* w , double* x , double* y , double* z );
 
             void get_value();
 
-            void update( float gx , float gy , float gz , float ax , float ay , float az ,
-                    double sampleFreq );
+            void update( float gx , float gy , float gz , float ax , float ay , float az );
 
         protected:
             double *w, *x, *y, *z;
             float q0, q1, q2, q3;
             float beta;
+            float sampleFreq;
 
     }; // object Madgwick
 

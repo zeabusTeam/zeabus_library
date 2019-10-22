@@ -25,24 +25,24 @@ class PIDZTransform:
         self.set_parameter( kp , ki , kd , sample_time , coefficient )
 
     def set_parameter( self , kp , ki , kd , sample_time , coefficient ):
-        self.b0 = 4*coefficient + 
+        self.b0 = ( 4*coefficient + 
                 4 * kp +
                 2 * ki * sample_time +
                 coefficient * ki * sample_time +
-                2 * coefficient * kp * sample_time
-        self.b1 = coefficient * ki * sample_time * sample_time -
+                2 * coefficient * kp * sample_time )
+        self.b1 = ( coefficient * ki * sample_time * sample_time -
                 8 * coefficient -
-                8 * kp
-        self.b2 = 4 * coefficient +
+                8 * kp )
+        self.b2 = ( 4 * coefficient +
                 4 * kp -
                 2 * ki * sample_time +
                 coefficient * ki * sample_time * sample_time -
-                2 * coefficient * kp * sample_time 
-        self.a0 = coefficient * sample_time * 2 + 
-                4
+                2 * coefficient * kp * sample_time )
+        self.a0 = ( coefficient * sample_time * 2 + 
+                4 )
         self.a1 = -8 
-        self.a2 = coefficient * sample_time * 2 +
-                4
+        self.a2 = ( coefficient * sample_time * 2 +
+                4 )
         self.reset()
 
     def reset( self ):

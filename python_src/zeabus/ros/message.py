@@ -21,7 +21,7 @@ def vector3( vector ):
 
 def twist_stamped( linear = ( 0 , 0 , 0 ) , angular = ( 0 , 0 , 0 ) ):
     answer = TwistStamped()
-    answer.twsit = twist()
+    answer.twist = twist()
     return answer
 
 def twist( linear = ( 0 , 0 , 0 ) , angular = ( 0 , 0 , 0 ) ):
@@ -44,5 +44,5 @@ def odometry():
     answer.pose.pose.position.y = 0
     answer.pose.pose.position.z = 0
     answer.pose.pose.orientation = quaternion()
-    answer.twist.twsit = twist()
+    answer.twist.twist = twist()
     return answer 

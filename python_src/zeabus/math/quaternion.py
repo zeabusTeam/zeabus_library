@@ -26,8 +26,8 @@ class Quaternion :
     #   4 Dimension
 
     # We will init quaternion at roll pitch yaw is 0 radian
-    def __init__ (self):
-        self.vector = ( 0, 0, 0, 1 )
+    def __init__ (self , qauternion = ( 0 , 0 , 0 , 1 ) ):
+        self.vector = quaternion
        
     # function set_quaternion use to set by input tuple of quaternion
     def set_quaternion (self , quaternion):
@@ -69,6 +69,13 @@ class Quaternion :
         temp = Quaternion()
         temp.set_quaternion( quaternion )
         result = self * temp * self.inverse()
+        return result
+
+    # Function this use to inverse rotation data
+    def inverse_rotation( self, quaternion ):
+        temp = Quaternion()
+        temp.set_quaternion( quaternion )
+        result = self.inverse() * temp * self
         return result
 
     # This use in pattern of multiple between object quaternion

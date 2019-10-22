@@ -19,6 +19,11 @@ def vector3( vector ):
     answer.z = vector[2]
     return answer
 
+def twist_stamped( linear = ( 0 , 0 , 0 ) , angular = ( 0 , 0 , 0 ) ):
+    answer = TwistStamped()
+    answer.twsit = twist()
+    return answer
+
 def twist( linear = ( 0 , 0 , 0 ) , angular = ( 0 , 0 , 0 ) ):
     answer = Twist()
     answer.linear = vector3( linear )

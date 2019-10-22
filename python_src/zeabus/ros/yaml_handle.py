@@ -18,6 +18,8 @@ import yaml
 from os import path
 from termcolor import colored
 
+rospack = rospkg.RosPack()
+
 class YamlHandle:
 
     def __init__( self , package_name , subdirectory , file_name ):
@@ -38,7 +40,7 @@ class YamlHandle:
             print colored( "FATAL : " , "red") + self.fullpath + " don\'t available to download"
         return data
 
-    def save_data( self ):
+    def save_data( self , datas ):
         with open( self.fullpath , 'w' ) as file_system :
-            data = yaml.dump( users , file_system )
+            data = yaml.dump( datas , file_system )
         return data

@@ -6,13 +6,12 @@
 
 # README
 # Form reference 1 this is how to process of pid so I can summary about calculate is
-#   p-term is y(t) = K_p * x(t)
-#   i-term is y(t) = ( K_i * T_s * ( x(t) + x(t-1) ) + 2y(t-1) ) / 2
-#   d-term is y(t) = ( 2N( x(t) - x(t-1) ) - y(t-1)*(N*T-2) ) / (2+N*T)
-#   So I will summation of three term to one term
 # Form reference we will you data at time t , t-1 , t-2 so
 #   I will collect data by using list and index is 0 , 1 , 2 for time t , t-1 , t-2 by order
 # I find I wrong to try it by myself from ref03 we use matlab for solve equation
+# About constant parameter sample_time and coefficient
+#   coefficient is filter coefficient
+#   sample_time will match about frequency of PID control
 
 # REFERENCE
 # ref01 : https://www.scilab.org/discrete-time-pid-controller-implementation
@@ -36,8 +35,9 @@ class PIDZTransform:
                 8 * kp
         self.b2 = 4 * coefficient +
                 4 * kp -
-                2 * ki * ts +
-                coefficient * ki * sample_time * sample_time 
+                2 * ki * sample_time +
+                coefficient * ki * sample_time * sample_time -
+                2 * coefficient * kp * sample_time 
         self.a0 = coefficient * sample_time * 2 + 
                 4
         self.a1 = -8 
@@ -49,7 +49,7 @@ class PIDZTransform:
         self.input = [ 0 , 0 , 0 ]
         self.output = [ 0 , 0 , 0 ]
 
-    def calculate( self , input_data , saturation ):
+    def calculate( self , input_data , saturation = 0):
         self.input.pop()
         self.input.insert( 0 , input_data )
         self.output.insert( 0 , # insert input at first element 

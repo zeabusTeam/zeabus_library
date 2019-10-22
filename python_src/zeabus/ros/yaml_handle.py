@@ -11,6 +11,7 @@
 # ref02 : https://www.guru99.com/python-check-if-file-exists.html
 # ref03 : https://stackoverflow.com/questions/8380006/file-open-function-with-try-except-python-2-7-1
 # ref04 : https://stackoverflow.com/questions/287871/how-to-print-colored-text-in-terminal-in-python
+# ref05 : https://github.com/yaml/pyyaml/wiki/PyYAML-yaml.load(input)-Deprecation
 
 import rospy
 import rospkg
@@ -34,7 +35,7 @@ class YamlHandle:
         data = {}
         try:
             file_system = open( self.fullpath , "r" )
-            data = yaml.load( self.fullpath )
+            data = yaml.load( file_system , Loader=yaml.FullLoader )
             file_system.close()
         except:
             print colored( "FATAL : " , "red") + self.fullpath + " don\'t available to download"

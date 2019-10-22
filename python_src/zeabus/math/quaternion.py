@@ -26,7 +26,7 @@ class Quaternion :
     #   4 Dimension
 
     # We will init quaternion at roll pitch yaw is 0 radian
-    def __init__ (self , qauternion = ( 0 , 0 , 0 , 1 ) ):
+    def __init__ (self , quaternion = ( 0 , 0 , 0 , 1 ) ):
         self.vector = quaternion
        
     # function set_quaternion use to set by input tuple of quaternion

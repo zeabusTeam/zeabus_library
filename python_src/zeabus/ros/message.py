@@ -9,9 +9,18 @@
 
 # REFERENCE
 
+import rospy
+
+from std_msgs.msg import Header
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import Quaternion, TwistStamped, Twist , Vector3
 from zeabus_utility.msg import Int16Array8
+
+def header( frame_id ):
+    answer = Header()
+    answer.stamp = rospy.get_rostime()
+    answer.frame_id = frame_id
+    return answer
 
 def vector3( vector ):
     answer = Vector3()

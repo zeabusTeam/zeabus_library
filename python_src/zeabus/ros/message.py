@@ -11,6 +11,7 @@
 
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import Quaternion, TwistStamped, Twist , Vector3
+from zeabus_utility.msg import Int16Array8
 
 def vector3( vector ):
     answer = Vector3()
@@ -46,3 +47,8 @@ def odometry():
     answer.pose.pose.orientation = quaternion()
     answer.twist.twist = twist()
     return answer 
+
+def int16_array8( init_value = ( 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 )):
+    answer = Int16Array8()
+    answer.data = init_value
+    return answer

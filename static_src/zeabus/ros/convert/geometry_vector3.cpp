@@ -34,6 +34,18 @@ namespace geometry_vector3
         return true;
     } // function bytes type source vector unsigned char and message Vector3
 
+    void tf( const tf::Quaternion* ptr_input , geometry_msgs::Vector3* ptr_output )
+    {
+        ptr_output->x = ptr_input->x();
+        ptr_output->y = ptr_input->y();
+        ptr_output->z = ptr_input->z();
+    } // function to set value of message from quatenrion
+
+    void tf( const geometry_msgs::Vector3* ptr_input , tf::Quaternion* ptr_output )
+    {
+        *ptr_output = tf::Quaternion( ptr_input->x , ptr_input->y , ptr_input->z , 0 );
+    } // function to init value quaternion from vector3 for rotation by quaternion
+
 } // namespace geometry_vector3
 
 } // namespace convert

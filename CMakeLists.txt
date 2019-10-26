@@ -6,6 +6,7 @@ find_package( catkin REQUIRED COMPONENTS
     rospy
     geometry_msgs
     sensor_msgs
+    tf
 )
 
 find_package( Boost REQUIRED COMPONENTS )

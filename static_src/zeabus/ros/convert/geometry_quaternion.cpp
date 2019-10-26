@@ -35,6 +35,19 @@ namespace geometry_quaternion
         return true;
     } // function bytes type source vector unsigned char and message Vector3
 
+    void tf( const tf::Quaternion* source , geometry_msgs::Quaternion* target )
+    {
+        target->w = source->w();
+        target->x = source->x();
+        target->y = source->y();
+        target->z = source->z();
+    } // function get move data from tf:;Quaternion to Quaternion message 
+
+    void tf( const geometry_msgs::Quaternion* source , tf::Quaternion* target )
+    {
+        *target = tf::Quaternion( source->x , source->y , source->z , source->w );
+    } // function get move data from geometry_msgs:;Quaternion to tf::Quaternion
+
 } // namespace geometry_quaternion
 
 } // namespace convert

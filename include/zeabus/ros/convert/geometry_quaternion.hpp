@@ -15,6 +15,8 @@
 
 #include    <geometry_msgs/Quaternion.h>
 
+#include    <tf/LinearMath/Quaternion.h>
+
 #include    <zeabus/convert/bytes.hpp>
 
 #ifndef _ZEABUS_ROS_CONVERT_GEOMETRY_QUATERNION_HPP__
@@ -31,7 +33,10 @@ namespace geometry_quaternion
 
     bool bytes( std::vector< unsigned char >::iterator point , 
             geometry_msgs::Quaternion* message_ptr ,
-            unsigned int offset = 0); 
+            unsigned int offset = 0);
+
+    void tf( const tf::Quaternion* source , geometry_msgs::Quaternion* target ); 
+    void tf( const geometry_msgs::Quaternion* source , tf::Quaternion* target ); 
 
 } // namespace geometry_quaternion
 

@@ -20,14 +20,14 @@ namespace subscriber
 {
 
     template< class data_type >
-    BaseClass::BaseClass( ros::NodeHandle* ptr_node_handle , data_type* ptr_data )
+    BaseClass< data_type >::BaseClass( ros::NodeHandle* ptr_node_handle , data_type* ptr_data )
     {
         this->ptr_node_handle = ptr_node_handle;
         this->ptr_data = ptr_data;
     } // function constructor
 
     template< class data_type >
-    void BaseClass::callback( const data_type& message )
+    void BaseClass< data_type >::callback( const data_type& message )
     {
         this->ptr_mutex_data->lock();
         *( this->ptr_data ) = message;
@@ -35,14 +35,15 @@ namespace subscriber
     } // function callback
 
     template< class data_type >
-    void BaseClass::setup_mutex_data( std::mutex* ptr_mutex_data )
+    void BaseClass< data_type >::setup_mutex_data( std::mutex* ptr_mutex_data )
     {   
         this->ptr_mutex_data = ptr_mutex_data;
     } // function setup_mutex_data
 
     template< class data_type >
-    void BaseClass::setup_subscriber( std::string topic , unsigned int queue_size ){
-        this->subscribe = this->ptr_node_handle->subscribe( topic, 
+    void BaseClass< data_type >::setup_subscriber( std::string topic , unsigned int queue_size )
+    {
+        this->subscribe_server = this->ptr_node_handle->subscribe( topic, 
                 queue_size, 
                 &zeabus_ros::subscriber::BaseClass< data_type >::callback,
                 this );

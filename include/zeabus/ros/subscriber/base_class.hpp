@@ -38,7 +38,7 @@ namespace subscriber
 
             void setup_mutex_data( std::mutex* ptr_mutex_data );
 
-            void setup_subscriber( std::string topic );
+            void setup_subscriber( std::string topic , unsigned int queue_size );
 
         public:
             data_type* ptr_data;
@@ -48,11 +48,11 @@ namespace subscriber
             ros::NodeHandle* ptr_node_handle;
 
             ros::Subscriber subscribe_server;
-    }
+    };
 
 } // namespace subscriber
 
 } // namespace zeabus_ros
 
-#include    <zeabus/ros/subscriber/base.cpp>
+#include    <zeabus/ros/subscriber/base_class.cpp>
 #endif // _ZEABUS_ROS_SUBSCRIBER_BASE_HPP__

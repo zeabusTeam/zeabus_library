@@ -32,8 +32,10 @@ class PID:
         self.i_term = 0
         
     def calculate( self , input_data , saturation = 0):
-        self.i_term = self.ki * ( self.input + input_data )/2.0 * self.sample_time - saturation
-        self.d_term = self.kd * ( input_data - self.input ) / sample_time
+        self.i_term = ( self.ki * ( self.input + input_data )/2.0 * self.sample_time + 
+                        -saturation + 
+                        self.i_term )
+        self.d_term = self.kd * ( input_data - self.input ) / self.sample_time
         self.output = self.i_term + self.d_term + self.kp*input_data
         self.input = input_data
         return self.output

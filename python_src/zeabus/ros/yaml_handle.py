@@ -17,7 +17,7 @@ import rospy
 import rospkg
 import yaml
 from os import path
-from termcolor import colored
+#from termcolor import colored
 
 rospack = rospkg.RosPack()
 
@@ -35,10 +35,13 @@ class YamlHandle:
         data = {}
         try:
             file_system = open( self.fullpath , "r" )
-            data = yaml.load( file_system , Loader=yaml.FullLoader )
+            # I have problem about version of yaml in original code on ros not have yaml.FullLoader
+            #data = yaml.load( file_system , Loader=yaml.FullLoader )
+            data = yaml.load( file_system )
             file_system.close()
         except:
-            print colored( "FATAL : " , "red") + self.fullpath + " don\'t available to download"
+            print "FATAL : " + self.fullpath + " don\'t available to download"
+            #print colored( "FATAL : " , "red") + self.fullpath + " don\'t available to download"
         return data
 
     def save_data( self , datas ):

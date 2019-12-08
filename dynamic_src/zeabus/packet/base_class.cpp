@@ -116,6 +116,18 @@ namespace packet
         return &( this->vector );
     } // BaseClass< vector_type >::pointer()
 
+    template< class vector_type >
+    std::vector< vector_type >::iterator BaseClass< vector_type >::begin()
+    {
+        return this->vector.begin();
+    } // BaseClass< vector_type >::begin()
+
+    template< class vector_type >
+    std::vector< vector_type >::iterator BaseClass< vector_type >::end()
+    {
+        return this->vector.end();
+    } // BaseClass< vector_type >::end()
+
 } // namespace packet
 
 } // namespace zeabus

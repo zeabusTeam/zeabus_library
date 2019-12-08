@@ -56,6 +56,10 @@ namespace packet
 
             void push( vector_type data ); // add single data to last element
 
+            std::vector< vector_type >::iterator begin(); // return first iterator
+
+            std::vector< vector_type >::iterator last(); // return last iterator
+
             unsigned int size(); // return size of element in vector
 
             template< typename... pack_type >

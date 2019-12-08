@@ -1,6 +1,6 @@
-// FILE			: data_frame.hpp
+// FILE			: normal_distribution.hpp
 // AUTHOR		: K.Supasan
-// CREATE ON	: 2019, December 5 (UTC+0)
+// CREATE ON	: 2019, December 8 (UTC+0)
 // MAINTAINER	: K.Supasan
 
 // MACRO DETAIL
@@ -19,10 +19,13 @@
 namespace zeabus
 {
 
-namespace math
+namespace filter
 {
 
-    
+    class NormalDistribution
+    {
+
+    }; // class structure NormalDistribution    
 
 } // namespace math
 

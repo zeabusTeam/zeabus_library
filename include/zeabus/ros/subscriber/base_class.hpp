@@ -40,7 +40,7 @@ namespace subscriber
 
             void setup_subscriber( std::string topic , unsigned int queue_size );
 
-        public:
+        protected:
             data_type* ptr_data;
 
             std::mutex* ptr_mutex_data;

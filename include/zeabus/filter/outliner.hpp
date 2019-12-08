@@ -1,6 +1,6 @@
-// FILE			: data_frame.hpp
+// FILE			: outliner.hpp
 // AUTHOR		: K.Supasan
-// CREATE ON	: 2019, December 5 (UTC+0)
+// CREATE ON	: 2019, December 8 (UTC+0)
 // MAINTAINER	: K.Supasan
 
 // MACRO DETAIL
@@ -19,10 +19,18 @@
 namespace zeabus
 {
 
-namespace math
+namespace filter
 {
 
-    
+    template
+    < class data_type , unsigned int size_array >
+    class Outliner
+    {
+        public:
+            Outliner();
+
+        protected:
+    };
 
 } // namespace math
 

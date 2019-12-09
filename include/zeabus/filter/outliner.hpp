@@ -13,8 +13,10 @@
 
 // MACRO CONDITION
 
-#ifndef _ZEABUS_MATH_DATA_FRAME_HPP__
-#define _ZEABUS_MATH_DATA_FRAME_HPP__
+#include    <zeabus/math/array.hpp>
+
+#ifndef _ZEABUS_FILTER_OUTLINER_HPP__
+#define _ZEABUS_FILTER_OUTLINER_HPP__
 
 namespace zeabus
 {
@@ -23,16 +25,28 @@ namespace filter
 {
 
     template
-    < class data_type , unsigned int size_array >
-    class Outliner
+    < class vector_type , unsigned int size_array >
+    class Outliner : public zeabus::math::Array< vector_type >
     {
         public:
-            Outliner();
+            Outliner( vector_type init_value );
+
+            void set_cut_size( unsigned int cut_size );
+
+            void push_data( vector_type value );
+
+            double get_result();
 
         protected:
+            unsigned int cut_size; // cut_size is mean cut min and max
+
+            unsigned int run_pos;
+        
+            void move_position();
+            
     };
 
-} // namespace math
+} // namespace filter
 
 } // namespace zeabus
 

@@ -21,6 +21,8 @@
 
 #include    <vector>    // for std vector
 
+#include    <algorithm>
+
 #ifndef _ZEABUS_PACKET_BASE_CLASS_HPP__
 #define _ZEABUS_PACKET_BASE_CLASS_HPP__
 

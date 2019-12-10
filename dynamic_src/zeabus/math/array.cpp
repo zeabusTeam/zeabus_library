@@ -20,7 +20,8 @@ namespace math
 {
 
     template< class vector_type >
-    Array< vector_type >::Array( unsigned int size , vector_type init_value ) : BaseClass()
+    Array< vector_type >::Array( unsigned int size , vector_type init_value ) : 
+            zeabus::packet::BaseClass< vector_type >::BaseClass()
     {
         this->vector.assign( size , init_value );
         this->already_sum = true;
@@ -28,17 +29,14 @@ namespace math
     } // function Constructor Array
 
     template< class vector_type >
-    void stable_sort( std::vector< vector_type >* ptr_vector )
+    void Array< vector_type >::stable_sort( std::vector< vector_type >* ptr_vector )
     {
-        std::vector< vector_type > temp_vector( this->begin() , this->last() );
-        std::stable_sort( temp_vector.begin() , temp_vector.end() );
-        ptr_vector->swap( temp_vector );
-        delete temp_vector;
-        
+        (*ptr_vector) = std::vector< vector_type >( this->vector.begin() , this->vector.end() );
+        std::stable_sort( ptr_vector->begin() , ptr_vector->end() );
     } // function sort
 
     template< class vector_type >
-    double get_sum( bool sum_again )
+    double Array< vector_type >::get_sum( bool sum_again )
     {
         if( sum_again || !( this->already_sum ) )
         {
@@ -48,17 +46,17 @@ namespace math
     } // function get_sum
 
     template< class vector_type >
-    double get_mean()
+    double Array< vector_type >::get_mean()
     {
         return this->summation / this->size();
     } // function get_mean
 
     template< class vector_type >
-    double get_variance()
+    double Array< vector_type >::get_variance()
     {
         double temporary = 0;
         (void)this->get_sum();
-        for( std::vector< vector_type >::iterator iter = this->begin() ;
+        for( auto iter = this->vector.begin() ;
                 iter != this->end() ;
                 iter++ )
         {
@@ -68,11 +66,11 @@ namespace math
     } // function get_variance
 
     template< class vector_type >
-    void find_summation()
+    void Array< vector_type >::find_summation()
     {
         this->summation = 0;
         this->already_sum = true;
-        for( std::vector< vector_type >::iterator iter = this->begin() ;
+        for( auto iter = this->begin() ;
                 iter != this->end() ; 
                 iter++ )
         {
@@ -80,7 +78,6 @@ namespace math
         } // loop get summation
     } // function find_summation
     
-
-} // namespace packet
+} // namespace math
 
 } // namespace zeabus

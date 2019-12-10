@@ -49,6 +49,7 @@ namespace math
             bool already_sum;
 
             void find_summation();
+
     };
 
 } // namespace math

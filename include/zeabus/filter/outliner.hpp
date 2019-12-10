@@ -50,4 +50,6 @@ namespace filter
 
 } // namespace zeabus
 
+#include    <zeabus/filter/outliner.cpp>
+
 #endif

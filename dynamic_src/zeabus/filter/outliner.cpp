@@ -21,7 +21,7 @@ namespace filter
 
     template< class vector_type , unsigned int size_array >
     Outliner< vector_type , size_array >::Outliner( vector_type init_value ) 
-            : Array( size_array , init_value )
+            : zeabus::math::Array< vector_type >::Array( size_array , init_value )
     {
         this->set_cut_size( 1 );
         this->run_pos = 0;
@@ -36,11 +36,11 @@ namespace filter
     template< class vector_type , unsigned int size_array >
     double Outliner< vector_type , size_array >::get_result()
     {
-        std::vector< vector_type >* ptr_vector;
-        this->stable_sort( ptr_vector );
+        std::vector< vector_type > vector( size_array );
+        this->stable_sort( &vector );
 
-        std::vector< vector_type >::iterator iter_start = ptr_vector->begin();
-        std::vector< vector_type >::iterator iter_end = ptr_vector->end();
+        auto iter_start = vector.begin();
+        auto iter_end = vector.rbegin();
         double answer = this->summation;
         for( unsigned int run = 0 ; run < this->cut_size ; run++ )
         {
@@ -49,16 +49,16 @@ namespace filter
             iter_start++;
             iter_end++;
         } 
-        return answer / ( this->size - ( this->cut_size * 2 ) );
+        return answer / ( this->size() - ( this->cut_size * 2 ) );
     } // function get_result
 
     template< class vector_type , unsigned int size_array >
     void Outliner< vector_type , size_array >::push_data( vector_type value )
     {
         this->summation -= (*this)[ this->run_pos ];
-        (*this)[ this->run_pos ] = value:
+        (*this)[ this->run_pos ] = value;
         this->summation += value;
-        this->move_posiion();
+        this->move_position();
     } // function push_data
 
     template< class vector_type , unsigned int size_array >

@@ -36,6 +36,24 @@ namespace math
     } // function sort
 
     template< class vector_type >
+    double Array< vector_type >::get_median()
+    {
+        double answer;
+        std::vector< vector_type > temp_vector( this->vector.begin() , this->vector.end() );
+        std::stable_sort( temp_vector.begin() , temp_vector.end() );
+        unsigned int size_vector = temp_vector.size();
+        if( size_vector % 2 == 0 )
+        {
+            answer = ( temp_vector[  size_vector / 2 ] + temp_vector[ (size_vector / 2) - 1] ) / 2;
+        }
+        else
+        {
+            answer = temp_vector[ ( size_vector + 1) / 2 - 1 ];
+        }
+        return answer;
+    }
+
+    template< class vector_type >
     double Array< vector_type >::get_sum( bool sum_again )
     {
         if( sum_again || !( this->already_sum ) )

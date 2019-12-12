@@ -43,6 +43,8 @@ namespace math
     
             double get_variance();
 
+            double get_median();
+
         protected:
             double summation;
 

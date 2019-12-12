@@ -17,13 +17,15 @@ class PID:
         self.kp = 0
         self.ki = 0
         self.kd = 0
+        self.offset = 0 
         self.sample_time = 0
 
-    def set_parameter( self , kp , ki , kd , sample_time , coefficient ):
+    def set_parameter( self , kp , ki , kd , sample_time , coefficient , offset = 0 ):
         self.kp = kp
         self.ki = ki
         self.kd = kd
         self.sample_time = sample_time
+        self.offset = offset
         self.reset()
 
     def reset( self ):
@@ -36,6 +38,6 @@ class PID:
                         -saturation * self.ki + # Saturation Part 
                         self.i_term ) # Summation Part
         self.d_term = self.kd * ( input_data - self.input ) / self.sample_time
-        self.output = self.i_term + self.d_term + self.kp*input_data
+        self.output = self.i_term + self.d_term + self.kp*input_data + self.offset
         self.input = input_data
         return self.output

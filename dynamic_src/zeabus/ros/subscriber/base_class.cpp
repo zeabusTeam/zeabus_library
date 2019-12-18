@@ -35,6 +35,15 @@ namespace subscriber
     } // function callback
 
     template< class data_type >
+    void BaseClass< data_type >::callback_timestamp( const data_type& message )
+    {
+        this->ptr_mutex_data->lock();
+        *( this->ptr_data ) = message;
+        this->ptr_data->header.stamp = ros::Time::now();
+        this->ptr_mutex_data->unlock();
+    } // function callback
+
+    template< class data_type >
     void BaseClass< data_type >::setup_mutex_data( std::mutex* ptr_mutex_data )
     {   
         this->ptr_mutex_data = ptr_mutex_data;
@@ -49,6 +58,15 @@ namespace subscriber
                 this );
     } // function setup_subscriber
 
+    template< class data_type >
+    void BaseClass< data_type >::setup_subscriber_timestamp( std::string topic, 
+            unsigned int queue_size )
+    {
+        this->subscribe_server = this->ptr_node_handle->subscribe( topic, 
+                queue_size, 
+                &zeabus_ros::subscriber::BaseClass< data_type >::callback_timestamp,
+                this );
+    } // function setup_subscriber
 } // namespace subscriber
 
 } // namespace zeabus_ros

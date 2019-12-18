@@ -18,3 +18,10 @@ def bound_radian( problem ):
         else:
             problem += (-2.0*math.pi)
     return problem
+
+def equal( x , y ):
+    answer = False
+    z = abs( x - y )
+    if z > 0.0001:
+        answer = True
+    return answer

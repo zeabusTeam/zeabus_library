@@ -8,6 +8,8 @@
 
 # REFERENCE
 
+from ..math.general import equal
+
 class PID:
 
     def __init__( self , kp = 0 , ki = 0 , kd = 0 , sample_time = 0.1 , coefficient = 5 ):
@@ -21,12 +23,25 @@ class PID:
         self.sample_time = 0
 
     def set_parameter( self , kp , ki , kd , sample_time , coefficient , offset = 0 ):
+        have_reset = False
+        if not equal( self.kp , kp ) :
+            have_reset = True
+        elif not equal( self.ki , ki ):
+            have_reset = True
+        elif not equal( self.kd , kd ):
+            have_reset = True
+        elif not equal( self.offset , offset ):
+            have_reset = True
+        elif not equal( self.sample_time , sample_time ):
+            have_reset = True
+        else:
+            None
         self.kp = kp
         self.ki = ki
         self.kd = kd
         self.sample_time = sample_time
-        self.offset = offset
-        self.reset()
+        if have_reset :
+            self.offset = offset
 
     def reset( self ):
         self.input = 0

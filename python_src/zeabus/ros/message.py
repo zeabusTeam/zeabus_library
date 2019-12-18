@@ -14,7 +14,7 @@ import rospy
 from std_msgs.msg import Header
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import Quaternion, TwistStamped, Twist , Vector3
-from zeabus_utility.msg import Int16Array8
+from zeabus_utility.msg import Int16Array8, ControlCommand
 
 def header( frame_id ):
     answer = Header()
@@ -61,3 +61,10 @@ def int16_array8( init_value = ( 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 )):
     answer = Int16Array8()
     answer.data = init_value
     return answer
+
+def control_command():
+    answer = ControlCommand()
+    ControlCommand.target = ( 0 , 0 , 0 , 0 , 0 , 0 )
+    ControlCommand.mask = ( False , False , False , False , False ,False )
+    return answer
+    

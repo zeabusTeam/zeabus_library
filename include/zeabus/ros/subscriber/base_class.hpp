@@ -36,9 +36,13 @@ namespace subscriber
 
             void callback( const data_type& message );
 
+            void callback_timestamp( const data_type& message );
+
             void setup_mutex_data( std::mutex* ptr_mutex_data );
 
             void setup_subscriber( std::string topic , unsigned int queue_size );
+
+            void setup_subscriber_timestamp( std::string topic , unsigned int queue_size );
 
         protected:
             data_type* ptr_data;

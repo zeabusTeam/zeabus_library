@@ -45,6 +45,7 @@ namespace serial
         }
         catch( const std::exception& error_message )
         {
+            std::cerr << "Error from exception : " <<error_message.what() << "\n";
             result = false;
         } // Finish try-catch
         return result;

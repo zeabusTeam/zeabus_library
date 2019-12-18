@@ -14,6 +14,7 @@
 #   ref01 : http://docs.ros.org/melodic/api/tf/html/python/transformations.html#module-tf.transform
 #   ref02 : https://docs.python.org/2/tutorial/classes.html
 #   ref03 : https://www.geeksforgeeks.org/operator-overloading-in-python/
+#   ref04 : http://www.chrobotics.com/library/understanding-quaternions
 
 import math
 import numpy

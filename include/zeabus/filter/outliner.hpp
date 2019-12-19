@@ -43,6 +43,8 @@ namespace filter
             unsigned int run_pos;
         
             void move_position();
+
+            double summation;
             
     };
 

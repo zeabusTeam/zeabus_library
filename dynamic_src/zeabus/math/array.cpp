@@ -24,8 +24,6 @@ namespace math
             zeabus::packet::BaseClass< vector_type >::BaseClass()
     {
         this->vector.assign( size , init_value );
-        this->already_sum = true;
-        this->summation = init_value * size ;
     } // function Constructor Array
 
     template< class vector_type >
@@ -36,7 +34,7 @@ namespace math
     } // function sort
 
     template< class vector_type >
-    double Array< vector_type >::get_median()
+    double Array< vector_type >::median()
     {
         double answer;
         std::vector< vector_type > temp_vector( this->vector.begin() , this->vector.end() );
@@ -54,48 +52,40 @@ namespace math
     }
 
     template< class vector_type >
-    double Array< vector_type >::get_sum( bool sum_again )
+    double Array< vector_type >::sum()
     {
-        if( sum_again || !( this->already_sum ) )
+        double summation = 0;
+        for( auto iter = this->begin() ; iter != this->end() ; iter++ )
         {
-            this->find_summation();
-        } // condition have to find again 
-        return this->summation;
-    } // function get_sum
+            summation += *iter;
+        } // loop get summation
+        return summation;
+    } // function sum
 
     template< class vector_type >
-    double Array< vector_type >::get_mean()
+    double Array< vector_type >::mean()
     {
-        return this->summation / this->size();
-    } // function get_mean
+        return this->sum() / this->size();
+    } // function mean
 
     template< class vector_type >
-    double Array< vector_type >::get_variance()
+    double Array< vector_type >::variance()
     {
         double temporary = 0;
-        (void)this->get_sum();
-        for( auto iter = this->vector.begin() ;
-                iter != this->end() ;
-                iter++ )
+        double summation = this->sum();
+        for( auto iter = this->vector.begin() ; iter != this->end() ; iter++ )
         {
-            temporary += pow( ( *iter ) - this->summation , 2 );
+            temporary += pow( ( *iter ) - summation , 2 );
         }
         return temporary / this->size;
-    } // function get_variance
+    } // function variance
 
     template< class vector_type >
-    void Array< vector_type >::find_summation()
+    double Array< vector_type >::std()
     {
-        this->summation = 0;
-        this->already_sum = true;
-        for( auto iter = this->begin() ;
-                iter != this->end() ; 
-                iter++ )
-        {
-            this->summation += *iter;
-        } // loop get summation
-    } // function find_summation
-    
+        return std::sqrt( this->variance() );
+    }
+
 } // namespace math
 
 } // namespace zeabus

@@ -37,20 +37,15 @@ namespace math
 
             void stable_sort( std::vector< vector_type >* ptr_vector );
 
-            double get_sum( bool sum_again = true );
+            double sum();
         
-            double get_mean();
+            double mean();
     
-            double get_variance();
+            double variance();
 
-            double get_median();
+            double std();
 
-        protected:
-            double summation;
-
-            bool already_sum;
-
-            void find_summation();
+            double median();
 
     };
 

@@ -45,7 +45,7 @@ namespace math
 
             double std();
 
-            double median();
+            double median( int position = -1 );
 
     };
 

@@ -64,7 +64,7 @@ def int16_array8( init_value = ( 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 )):
 
 def control_command():
     answer = ControlCommand()
-    ControlCommand.target = ( 0 , 0 , 0 , 0 , 0 , 0 )
-    ControlCommand.mask = ( False , False , False , False , False ,False )
+    answer.target = ( 0 , 0 , 0 , 0 , 0 , 0 )
+    answer.mask = ( False , False , False , False , False ,False )
     return answer
     

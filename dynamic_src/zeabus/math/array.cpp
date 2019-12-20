@@ -34,19 +34,23 @@ namespace math
     } // function sort
 
     template< class vector_type >
-    double Array< vector_type >::median()
+    double Array< vector_type >::median( int position )
     {
         double answer;
         std::vector< vector_type > temp_vector( this->vector.begin() , this->vector.end() );
         std::stable_sort( temp_vector.begin() , temp_vector.end() );
         unsigned int size_vector = temp_vector.size();
-        if( size_vector % 2 == 0 )
+        if( ( size_vector % 2 == 0 ) && ( position == - 1 ) )
         {
             answer = ( temp_vector[  size_vector / 2 ] + temp_vector[ (size_vector / 2) - 1] ) / 2;
         }
-        else
+        else if( position == - 1 )
         {
             answer = temp_vector[ ( size_vector + 1) / 2 - 1 ];
+        }
+        else
+        {
+            answer = temp_vector[ position ];
         }
         return answer;
     }

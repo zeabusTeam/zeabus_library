@@ -9,16 +9,22 @@
 
 // REFERENCE
 //  ref01   : http://www.cplusplus.com/reference/istream/istream/istream/
+//  ref02   : http://www.cplusplus.com/reference/cstdio/sscanf/
 
 // MACRO SET
 
 // MACRO CONDITION
 
-#include    <iostream>
+#include    <cstdio>
 
 #include    <fstream>
 
+#include    <iostream>
+
 #include    <zeabus/escape_code.hpp>
+
+#ifndef _ZEABUS_FILE_HPP__
+#define _ZEABUS_FILE_HPP__
 
 namespace zeabus
 {
@@ -37,4 +43,8 @@ namespace zeabus
             void print_alert( std::string purpose );
 
     }; // class structor declare
+
+    bool extract_csv_type_2( FileCSV* file_object , int* first , double* second );
 }
+
+#endif // _ZEABUS_FILE_HPP__

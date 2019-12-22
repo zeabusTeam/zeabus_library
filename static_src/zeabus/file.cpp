@@ -36,16 +36,13 @@ namespace zeabus
         {
             char temp = 's';
             int start_position = this->tellg();
-            std::cout   << "Start position " << start_position << "\n";
             *num_column = 1;
             while( temp != '\n' )
             {
                 if( temp == signature ) (*num_column) +=1;
                 this->get( temp );
             } // loop count command
-            std::cout   << "Before set new " << this->tellg() << "\n";
             this->seekg( start_position );
-            std::cout   << "After set new " << this->tellg() << "\n";
             return_value = true;
         }
         return return_value;
@@ -68,8 +65,9 @@ namespace zeabus
             while( !this->eof() )
             {
                 *this >> temporary;
-                *num_line += 1; 
+                *num_line += 1;
             }
+            this->clear(); // Now flag are eof we need to clear flag
             this->seekg( save_position );
             success = true;
         }

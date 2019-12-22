@@ -8,4 +8,7 @@ add_subdirectory( ros )
 
 add_subdirectory( math )
 
-add_library( File file.cpp )
+add_library( File 
+    file.cpp 
+    file_extract.cpp
+)

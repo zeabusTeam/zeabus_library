@@ -7,6 +7,7 @@ find_package( catkin REQUIRED COMPONENTS
     geometry_msgs
     sensor_msgs
     tf
+    roslib
 )
 
 find_package( Boost REQUIRED COMPONENTS )
@@ -16,6 +17,7 @@ set( SHARED_LIBS
     SynchronousPort
     ImuConnector
     Convert
+    File
     Ahrs
 )
 

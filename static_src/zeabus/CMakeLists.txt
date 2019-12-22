@@ -7,3 +7,5 @@ add_subdirectory( sensor )
 add_subdirectory( ros )
 
 add_subdirectory( math )
+
+add_library( File file.cpp )

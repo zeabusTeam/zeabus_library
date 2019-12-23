@@ -37,6 +37,7 @@ namespace zeabus_ros
         std::string command = "rosrun dynamic_reconfigure dynparam dump " + node_name +
                 " " + full_path + " &";
         std::system( command.c_str() );
+        ros::Duration( 0.1 ).sleep();
     }
 
     void DynamicReconfigure::load( const std::string package_name,
@@ -53,6 +54,9 @@ namespace zeabus_ros
         std::string command = "rosrun dynamic_reconfigure dynparam load " + node_name +
                 " " + full_path + " &";
         std::system( command.c_str() );
+        std::cout   << "load waiting for 3 second ========> ";
+        ros::Duration( 3 ).sleep();
+        std::cout   << "Finish load\n";
     }
 
 } // namespace zeabus_ros

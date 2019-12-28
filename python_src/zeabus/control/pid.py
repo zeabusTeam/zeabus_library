@@ -56,11 +56,14 @@ class PID:
         self.i_term = 0
         
     def calculate( self , input_data , saturation = 0):
-        # Part of area , saturation and summation in order
-        self.i_term = ( ( self.ki * ( self.input + input_data )/2.0
-                        -saturation * self.ks ) * self.sample_time + 
-                        self.i_term )
+        # Original Summation term
+        self.i_term += self.ki * ( self.input + input_data ) / 2.0 * self.sample_time 
+        # Saturation part
+        self.i_term -= self.ks * saturation
+        # Differential part
         self.d_term = self.kd * ( input_data - self.input ) / self.sample_time
+        # Have plus all term
         self.output = self.i_term + self.d_term + self.kp*input_data + self.offset
+        # Save data to make delay unit
         self.input = input_data
         return self.output

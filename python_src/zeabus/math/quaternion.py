@@ -86,3 +86,5 @@ class Quaternion :
         q.set_quaternion(temp)
         return q
 
+    def __getitem__( self , index ):
+        return self.vector[ index ]

@@ -16,7 +16,7 @@ from ..math.quaternion import Quaternion
 
 from std_msgs.msg import Header, String
 from ..ros import message as nm # new message
-from . import constant as pm # paramet
+from .constant import Control as pm # parameter
 from zeabus_utility.srv import SendFloat, SendBool
 
 class ControlHandle:

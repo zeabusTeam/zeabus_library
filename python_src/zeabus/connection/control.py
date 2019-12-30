@@ -10,6 +10,10 @@
 
 import rospy
 
+import tf
+
+from ..math.quaternion import Quaternion
+
 from std_msgs.msg import Header, String
 from ..ros import message as nm # new message
 from . import constant as pm # paramet
@@ -21,6 +25,21 @@ class ControlHandle:
         self.header = nm.header( node_name )
 
         self.publish_message = rospy.Publisher( "/mission/control" , String , queue_size = 10 )
+
+        self.listener_tf = tf.TransformListener()
+
+    def get_error( self ):
+        try:
+            ( translation , rotation ) = self.listener_tf.lookupTransform(
+                    pm._FRAME_ERROR_PAREMT,
+                    pm._FRAME_ERROR_CHILD,
+                    rospy.Time()
+            )
+        except( tf.LookupExcepthin , tf.ConnectivityException , tf.ExtrapolationException ):
+            translation = ( 0 , 0 , 0 )
+            rotation = ( 0 , 0 , 0 , 1 )
+
+        return ( translation , Quaternion( rotation ).get_euler() )
 
     def reset_all( self , data ):
         return self.call( rospy.ServiceProxy( pm._TOPIC_RESET_ALL , SendBool ) , data )

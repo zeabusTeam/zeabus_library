@@ -41,6 +41,9 @@ class ControlHandle:
 
         return ( translation , Quaternion( rotation ).get_euler() )
 
+    def activate( self , data ):
+        return self.call( rospy.ServiceProxy( pm._TOPIC_ACTIVATE , SendBool ) , data )
+
     def reset_all( self , data ):
         return self.call( rospy.ServiceProxy( pm._TOPIC_RESET_ALL , SendBool ) , data )
 

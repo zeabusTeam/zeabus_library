@@ -20,6 +20,7 @@ class PID:
         self.ki = 0
         self.kd = 0
         self.ks = 0
+        self.pd_term = 0
         self.offset = 0 
         self.sample_time = sample_time 
         self.i_term = 0
@@ -55,15 +56,20 @@ class PID:
         self.output = 0;
         self.i_term = 0
         
-    def calculate( self , input_data , saturation = 0):
+    def calculate( self , input_data , real_force = None ):
+        # Find saturation
+        saturation = 0
+        if real_force != None:
+            saturation = self.offset + self.pd_term - real_force 
         # Original Summation term
         self.i_term += self.ki * ( self.input + input_data ) / 2.0 * self.sample_time 
         # Saturation part
         self.i_term -= self.ks * saturation
         # Differential part
-        self.d_term = self.kd * ( input_data - self.input ) / self.sample_time
+        self.pd_term = self.kd * ( input_data - self.input ) / self.sample_time +
+                self.kp * input_data
         # Have plus all term
-        self.output = self.i_term + self.d_term + self.kp*input_data + self.offset
+        self.output = self.i_term + self.pd_term + self.offset
         # Save data to make delay unit
         self.input = input_data
         return self.output

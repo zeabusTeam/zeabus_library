@@ -10,6 +10,8 @@
 
 import math
 
+import numpy as np
+
     # Function for bound range of radian in range -pi to pi
 def bound_radian( problem ):
     while( problem < -1.0*math.pi or problem > math.pi ):
@@ -25,3 +27,6 @@ def equal( x , y ):
     if z > 0.0001:
         answer = True
     return answer
+
+def same_sign( x , y ):
+    return np.sign( x ) == np.sign( y )

@@ -8,7 +8,7 @@
 
 # REFERENCE
 
-from ..math.general import equal
+from ..math.general import equal , same_sign
 
 class PID:
 
@@ -60,14 +60,15 @@ class PID:
         # Find saturation
         saturation = 0
         if real_force != None:
-            saturation = self.offset + self.pd_term - real_force 
+            real_force = self.pd_term + self.offset - real_force # Get real force remain only i_term
+            saturation = self.i_term + real_force
         # Original Summation term
         self.i_term += self.ki * ( self.input + input_data ) / 2.0 * self.sample_time 
         # Saturation part
         self.i_term -= self.ks * saturation
         # Differential part
-        self.pd_term = self.kd * ( input_data - self.input ) / self.sample_time +
-                self.kp * input_data
+        self.pd_term = ( self.kd * ( input_data - self.input ) / self.sample_time + 
+                self.kp * input_data )
         # Have plus all term
         self.output = self.i_term + self.pd_term + self.offset
         # Save data to make delay unit

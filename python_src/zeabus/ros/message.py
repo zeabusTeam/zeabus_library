@@ -13,6 +13,7 @@ import rospy
 
 from std_msgs.msg import Header
 from nav_msgs.msg import Odometry
+from sensor_msgs.msg import Joy
 from geometry_msgs.msg import Quaternion, TwistStamped, Twist , Vector3
 from zeabus_utility.msg import Int16Array8, ControlCommand, Float64Array8 , Float64Array
 
@@ -67,7 +68,7 @@ def float64_array8( init_value = ( 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 ) ):
     answer.data = init_value
     return answer
 
-def float64_array( frame , init_value = ( 0 , 0 , 0 , 0 , 0 , 0 ) )
+def float64_array( frame , init_value = ( 0 , 0 , 0 , 0 , 0 , 0 ) ):
     answer = Float64Array()
     answer.header.stamp = rospy.get_rostime()
     answer.header.frame_id = frame
@@ -79,4 +80,11 @@ def control_command():
     answer.target = ( 0 , 0 , 0 , 0 , 0 , 0 )
     answer.mask = ( False , False , False , False , False ,False )
     return answer
-    
+
+def joy( frame , axes=( 0 , 0 , 0 , 0 , 0 , 0 ) , 
+        buttons= ( 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 ) ):
+    answer = Joy()
+    answer.header.frame_id = frame
+    answer.axes = axes
+    answer.buttons = buttons
+    return answer  

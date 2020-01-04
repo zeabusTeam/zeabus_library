@@ -24,4 +24,4 @@ class Control( object ):
 
     _TOPIC_ACTIVATE = "/control/activate"
 
-    _TOPIC_ADDITION_FORCE = "/control/force/target"
+    _TOPIC_ADDITION_FORCE = "/control/system/force"

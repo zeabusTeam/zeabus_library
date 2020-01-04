@@ -17,7 +17,7 @@ from ..math.quaternion import Quaternion
 from std_msgs.msg import Header, String
 from ..ros import message as nm # new message
 from .constant import Control as pm # parameter
-from zeabus_utility.srv import SendFloat, SendBool
+from zeabus_utility.srv import SendFloat, SendBool, Float64Array
 
 class ControlHandle:
 
@@ -25,6 +25,10 @@ class ControlHandle:
         self.header = nm.header( node_name )
 
         self.publish_message = rospy.Publisher( "/mission/control" , String , queue_size = 10 )
+
+        self.publish_addition_force = rospy.Publisher( pm._TOPIC_ADDITION_FORCE , 
+                Float64Array,
+                queue_size = 10 )
 
         self.listener_tf = tf.TransformListener()
 
@@ -86,4 +90,7 @@ class ControlHandle:
     def pub( self , data ):
         self.publish_message.publish( String( self.header.frame_id + " : " + data ) )
 
+    def add_force( self , x = 0 , y = 0 , z = 0 , roll = 0 , pitch = 0 , yaw = 0 ):
+        self.publish_addition_force.publish( nm.float64_array( "base_link" ,
+                ( x , y , z , roll , pitch , yaw ) ) )
 

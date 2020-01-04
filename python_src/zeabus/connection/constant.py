@@ -23,3 +23,5 @@ class Control( object ):
     _TOPIC_PLANE_XY = "/target/velocity/plane_xy"
 
     _TOPIC_ACTIVATE = "/control/activate"
+
+    _TOPIC_ADDITION_FORCE = "/control/force/target"

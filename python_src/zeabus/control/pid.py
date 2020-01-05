@@ -74,3 +74,7 @@ class PID:
         # Save data to make delay unit
         self.input = input_data
         return self.output
+
+    def non_calculate( self, input_data ):
+        self.input_data = input_data
+        return self.output

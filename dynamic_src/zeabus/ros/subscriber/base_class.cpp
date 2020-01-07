@@ -27,6 +27,18 @@ namespace subscriber
     } // function constructor
 
     template< class data_type >
+    BaseClass< data_type >::BaseClass()
+    {
+        std::cout   << "Warning You don't setup node_handle and ptr_data exactly\n";
+    } // function constructor
+
+    template< class data_type >
+    void BaseClass< data_type >::setup_base( ros::NodeHandle* ptr_node_handle , data_type* ptr_data){
+        this->ptr_node_handle = ptr_node_handle;
+        this->ptr_data = ptr_data;
+    } // function setup after constructor
+
+    template< class data_type >
     void BaseClass< data_type >::callback( const data_type& message )
     {
         this->ptr_mutex_data->lock();

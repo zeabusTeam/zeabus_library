@@ -44,6 +44,10 @@ namespace subscriber
 
             void setup_subscriber_timestamp( std::string topic , unsigned int queue_size );
 
+            BaseClass();
+
+            void setup_base( ros::NodeHandle* ptr_node_handle , data_type* ptr_data );
+
         protected:
             data_type* ptr_data;
 
@@ -52,6 +56,7 @@ namespace subscriber
             ros::NodeHandle* ptr_node_handle;
 
             ros::Subscriber subscribe_server;
+
     };
 
 } // namespace subscriber

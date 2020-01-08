@@ -46,7 +46,7 @@ class Quaternion :
         result = ( general.bound_radian( temp[0] )
             , general.bound_radian( temp[1])
             , general.bound_radian( temp[2]) )
-        return temp
+        return result
 
     def print_quaternion( self , name ):
         print( "{:s} is {:6.3f} {:6.3f} {:6.3f} {:6.3f}".format( name

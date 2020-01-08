@@ -75,10 +75,14 @@ def float64_array( frame , init_value = ( 0 , 0 , 0 , 0 , 0 , 0 ) ):
     answer.data = init_value
     return answer
 
-def control_command():
+def control_command( frame = "base_link", 
+        target = ( 0 , 0 , 0 , 0 , 0 , 0 ) , 
+        mask = ( False , False , False , False , False , False ) ):
     answer = ControlCommand()
-    answer.target = ( 0 , 0 , 0 , 0 , 0 , 0 )
-    answer.mask = ( False , False , False , False , False ,False )
+    answer.header.frame_id = frame
+    answer.header.stamp = rospy.get_rostime()
+    answer.target = target
+    answer.mask = mask
     return answer
 
 def joy( frame , axes=( 0 , 0 , 0 , 0 , 0 , 0 ) , 

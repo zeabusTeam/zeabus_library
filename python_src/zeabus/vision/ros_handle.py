@@ -47,7 +47,7 @@ class Subscriber:
 
     def load_message( self ):
         data = None
-        with self.load_message:
+        with self.lock_message:
              data = self.message
         return data
 

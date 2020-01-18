@@ -18,7 +18,7 @@ from std_msgs.msg import Header, String
 from ..ros import message as nm # new message
 from ..math.quaternion import Quaternion
 from .constant import Control as pm # parameter
-from zeabus_utility.srv import SendFloat, SendBool
+from zeabus_utility.srv import SendFloat, SendBool , ServiceBool
 from zeabus_utility.msg import Float64Array, ControlCommand
 from nav_msgs.msg import Odometry
 
@@ -73,7 +73,7 @@ class ControlHandle:
         return ( translation , Quaternion( rotation ).get_euler() )
 
     def activate( self , data ):
-        return self.call( rospy.ServiceProxy( pm._TOPIC_ACTIVATE , SendBool ) , data )
+        return self.call( rospy.ServiceProxy( pm._TOPIC_ACTIVATE , ServiceBool ) , data )
 
     def reset_all( self , data ):
         return self.call( rospy.ServiceProxy( pm._TOPIC_RESET_ALL , SendBool ) , data )

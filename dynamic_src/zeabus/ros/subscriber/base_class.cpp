@@ -41,6 +41,10 @@ namespace subscriber
     template< class data_type >
     void BaseClass< data_type >::callback( const data_type& message )
     {
+#ifdef _SHOW_CALLBACK_
+        std::cout   << "Callback receive message\n";
+#endif // _SHOW_CALLBACK_
+
         this->ptr_mutex_data->lock();
         *( this->ptr_data ) = message;
         this->ptr_mutex_data->unlock();
@@ -49,6 +53,10 @@ namespace subscriber
     template< class data_type >
     void BaseClass< data_type >::callback_timestamp( const data_type& message )
     {
+#ifdef _SHOW_CALLBACK_
+        std::cout   << "Callback Timestamp receive message\n";
+#endif // _SHOW_CALLBACK_
+
         this->ptr_mutex_data->lock();
         *( this->ptr_data ) = message;
         this->ptr_data->header.stamp = ros::Time::now();

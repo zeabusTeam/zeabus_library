@@ -24,6 +24,8 @@
 
 #include    <boost/qvm/mat.hpp>
 
+#include    <boost/qvm/mat_operations.hpp>
+
 #include    <zeabus/math/parameter.hpp>
 
 const static double cos45 = cos( 45.0 * zeabus::math::PI / 180.0 );
@@ -34,6 +36,10 @@ namespace zeabus
 
 namespace robot
 {
+
+    const static boost::qvm::vec< double , 3 > distance_center_gravity = { 0.0 , 0.0 , 0.08 };
+
+    const static boost::qvm::vec< double , 3 > distance_center_buoncy = { 0.0 , 0.0 , 0.1 };
 
     const static boost::qvm::vec< double , 3 > direction_linear_force[ 8 ] = { 
         { 0 , 0 , 1 },

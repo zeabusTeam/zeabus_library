@@ -16,6 +16,7 @@
 //  : http://ascii-table.com/ansi-escape-sequences-vt-100.php
 //  : http://ascii-table.com/ansi-escape-sequences.php
 //  : https://stackoverflow.com/questions/37774983/clearing-the-screen-by-printing-a-character
+//  : https://stackoverflow.com/questions/37774983/clearing-the-screen-by-printing-a-character/37778152
 
 // MACRO SET
 
@@ -47,6 +48,10 @@ namespace escape_code
     const static std::string bold_margenta = "\x1B[1;35m";
     const static std::string bold_cyan = "\x1B[0;36m";
     const static std::string bold_white = "\x1B[1;37m";
+
+    const static std::string screen_reset = "\033c";
+    const static std::string screen_home = "\033[H";
+    const static std::string screen_clear = "\033[2J";
 
 } // namespace escape_code
 

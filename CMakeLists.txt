@@ -23,6 +23,7 @@ set( SHARED_LIBS
 
 set( ROS_LIBS
     Ros
+    RosHandle
     RosConvert
 )
 

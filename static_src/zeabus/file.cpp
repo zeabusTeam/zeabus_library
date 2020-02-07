@@ -61,7 +61,6 @@ namespace zeabus
         {
             int save_position = this->tellg();
             this->seekg( 0 );
-            std::string temp;
             while( !this->eof() )
             {
                 *this >> temporary;

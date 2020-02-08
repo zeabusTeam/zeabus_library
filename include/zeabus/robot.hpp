@@ -37,6 +37,8 @@ namespace zeabus
 namespace robot
 {
 
+    const static double gravity = 9.782970341;
+
     const static boost::qvm::vec< double , 3 > distance_center_gravity = { 0.0 , 0.0 , 0.08 };
 
     const static boost::qvm::vec< double , 3 > distance_center_buoncy = { 0.0 , 0.0 , 0.1 };

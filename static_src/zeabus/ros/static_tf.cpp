@@ -53,15 +53,24 @@ namespace zeabus_ros
 
     void StaticTF::spin( double rate )
     {
-        (void)extract_csv_type_8( this->ptr_file , this->frame_id , this->child_frame ,
+        this->frame_id = new std::string[ this->size ] ;
+        this->child_frame = new std::string[ this->size ];
+        this->translation_x = ( double* ) malloc( sizeof( double ) * this->size ); 
+        this->translation_y = ( double* ) malloc( sizeof( double ) * this->size ); 
+        this->translation_z = ( double* ) malloc( sizeof( double ) * this->size ); 
+        this->rotation_x = ( double* ) malloc( sizeof( double ) * this->size ); 
+        this->rotation_y = ( double* ) malloc( sizeof( double ) * this->size ); 
+        this->rotation_z = ( double* ) malloc( sizeof( double ) * this->size ); 
+        this->child_frame[ 0 ] = "test";
+        (void)zeabus::extract_csv_type_8( this->ptr_file , this->frame_id , this->child_frame ,
                 this->translation_x , this->translation_y , this->translation_z ,
                 this->rotation_x , this->rotation_y , this->rotation_z );
-
         this->report_information();
 
-        free( this->tf_message );
         this->tf_message = ( geometry_msgs::TransformStamped* ) malloc( sizeof( 
                 geometry_msgs::TransformStamped ) * this->size );
+
+        tf::Quaternion temp_quaternion;
 
         for( unsigned int run = 0 ; run < this->size ; run++ )
         {
@@ -70,9 +79,11 @@ namespace zeabus_ros
             this->tf_message[ run ].transform.translation.x = this->translation_x[ run ];
             this->tf_message[ run ].transform.translation.y = this->translation_y[ run ];
             this->tf_message[ run ].transform.translation.z = this->translation_z[ run ];
-            this->tf_message[ run ].transform.rotation.x = this->rotation_x[ run ];
-            this->tf_message[ run ].transform.rotation.y = this->rotation_y[ run ];
-            this->tf_message[ run ].transform.rotation.z = this->rotation_z[ run ];
+            temp_quaternion.setRPY( this->rotation_x[ run ] , 
+                    this->rotation_y[ run ] ,
+                    this->rotation_z[ run ] );
+            zeabus_ros::convert::geometry_quaternion::tf( &temp_quaternion ,
+                    &( this->tf_message[ run ].transform.rotation ) );
         }
 
         this->thread_id = std::thread( &zeabus_ros::StaticTF::broadcast , this , rate );
@@ -97,10 +108,10 @@ namespace zeabus_ros
     void StaticTF::report_information()
     {
         printf( "Static Transformation %2d data\n" , this->size );
-        printf( "Frame_id      -->Child Frame   |   x   |   y   |   z   |   r   |   p   |  yaw\n" );
+        printf( "Frame_id      --> Child Frame\n" );
         for( unsigned int run = 0 ; run < this->size ; run++ )
         {
-            printf("%12s-->%12s| %4.2f | %4.2f | %4.2f | %4.2f | %4.2f | %4.2f\n" , 
+            printf("%14s--> %14s| %8.2f | %8.2f | %8.2f | %8.2f | %8.2f | %8.2f\n" , 
                     this->frame_id[ run ].c_str() , this->child_frame[ run ].c_str() ,
                     this->translation_x[run] , this->translation_y[run] , this->translation_z[run] ,
                     this->rotation_x[run] , this->rotation_y[run] , this->rotation_z[run] );

@@ -69,26 +69,10 @@ namespace zeabus
         std::string str_array[ 8 ];
         std::string str_collect;
         unsigned int num_line;
-        free( frame_id );
-        free( child_frame );
-        free( translation_x );
-        free( translation_y );
-        free( translation_z );
-        free( rotation_x );
-        free( rotation_y );
-        free( rotation_z );
-        frame_id = ( std::string* ) malloc( sizeof( std::string ) * num_line ); 
-        child_frame = ( std::string* ) malloc( sizeof( std::string ) * num_line );
-        translation_x = ( double* ) malloc( sizeof( double ) * num_line ); 
-        translation_y = ( double* ) malloc( sizeof( double ) * num_line ); 
-        translation_z = ( double* ) malloc( sizeof( double ) * num_line ); 
-        rotation_x = ( double* ) malloc( sizeof( double ) * num_line ); 
-        rotation_y = ( double* ) malloc( sizeof( double ) * num_line ); 
-        rotation_z = ( double* ) malloc( sizeof( double ) * num_line ); 
-        bool success = false;
-        if( ! file_object->count_line( &num_line ) )
+        bool success = file_object->count_line( &num_line );
+        if( ! success )
         {
-            ;
+            printf( "Failure to count line\n");
         }
         else
         {
@@ -115,6 +99,10 @@ namespace zeabus
                     default:
                         str_array[ y ] += str_collect[ x ];
                     }
+                }
+                for( unsigned int show  = 0 ; show < 8 ; show++ )
+                {
+                    std::cout   << str_array[ show ] << "\n"; 
                 }
                 frame_id[ run ] = str_array[ 0 ];
                 child_frame[ run ] = str_array[ 1 ];

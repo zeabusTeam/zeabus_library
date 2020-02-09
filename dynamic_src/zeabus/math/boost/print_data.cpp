@@ -21,11 +21,12 @@ namespace zeabus_boost
     {
         for( int row = 0 ; row < R ; row++ )
         {
+            printf("\t");
             for( int column = 0 ; column < C ; column++ )
             {
-                printf( "%6.3f " , (double) data.a[ row ][ column ] );
+                printf( "%8.3f " , (double) data.a[ row ][ column ] );
             }
-            printf("\n\t");
+            printf("\n");
         }
     }
 
@@ -34,7 +35,7 @@ namespace zeabus_boost
     {
         for( int size = 0 ; size < S ; size++ )
         {
-            printf( "%6.3f " , (double) data.a[ size ] );
+            printf( "%8.3f " , (double) data.a[ size ] );
         }
         printf("\n");
     }

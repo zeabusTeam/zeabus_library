@@ -25,7 +25,7 @@ namespace zeabus_boost
             {
                 printf( "%6.3f " , (double) data.a[ row ][ column ] );
             }
-            printf("\n");
+            printf("\n\t");
         }
     }
 

@@ -28,6 +28,9 @@
 
 #include    <zeabus/math/parameter.hpp>
 
+#ifndef _ZEABUS_ROBOT_HPP__
+#define _ZEABUS_ROBOT_HPP__
+
 const static double cos45 = cos( 45.0 * zeabus::math::PI / 180.0 );
 const static double sin45 = sin( 45.0 * zeabus::math::PI / 180.0 );
 
@@ -38,6 +41,8 @@ namespace robot
 {
 
     const static double gravity = 9.782970341;
+
+    const static double rho_water = 1027.0;
 
     const static boost::qvm::vec< double , 3 > distance_center_gravity = { 0.0 , 0.0 , 0.08 };
 
@@ -130,3 +135,5 @@ namespace robot
 } // namespace robot
 
 } // namespace zeabus
+
+#endif

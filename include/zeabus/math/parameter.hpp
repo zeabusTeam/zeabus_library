@@ -14,6 +14,9 @@
 
 // MACRO CONDITION
 
+#ifndef _ZEABUS_MATH_PARAMETER_HPP__
+#define _ZEABUS_MATH_PARAMETER_HPP__
+
 namespace zeabus
 {
 
@@ -25,3 +28,5 @@ namespace math
 } // namespace math
 
 } // namespace zeabus
+
+#endif // _ZEABUS_MATH_PARAMETER_HPP__

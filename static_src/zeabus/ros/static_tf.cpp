@@ -61,31 +61,34 @@ namespace zeabus_ros
         this->rotation_x = ( double* ) malloc( sizeof( double ) * this->size ); 
         this->rotation_y = ( double* ) malloc( sizeof( double ) * this->size ); 
         this->rotation_z = ( double* ) malloc( sizeof( double ) * this->size ); 
-        this->child_frame[ 0 ] = "test";
         (void)zeabus::extract_csv_type_8( this->ptr_file , this->frame_id , this->child_frame ,
                 this->translation_x , this->translation_y , this->translation_z ,
                 this->rotation_x , this->rotation_y , this->rotation_z );
+
         this->report_information();
 
-        this->tf_message = ( geometry_msgs::TransformStamped* ) malloc( sizeof( 
-                geometry_msgs::TransformStamped ) * this->size );
+        this->tf_message = new geometry_msgs::TransformStamped[ this->size ];
 
         tf::Quaternion temp_quaternion;
 
+//        printf( "Setup tf message\n");
         for( unsigned int run = 0 ; run < this->size ; run++ )
         {
+//            printf( "\tnumber %u\n" , run );
             this->tf_message[ run ].header.frame_id = this->frame_id[ run ];
             this->tf_message[ run ].child_frame_id = this->child_frame[ run ];
+//            std::cout   << "\t\tLine before set translation\n";
             this->tf_message[ run ].transform.translation.x = this->translation_x[ run ];
             this->tf_message[ run ].transform.translation.y = this->translation_y[ run ];
             this->tf_message[ run ].transform.translation.z = this->translation_z[ run ];
+//            std::cout   << "\t\tLine before set rotation\n";
             temp_quaternion.setRPY( this->rotation_x[ run ] , 
                     this->rotation_y[ run ] ,
                     this->rotation_z[ run ] );
             zeabus_ros::convert::geometry_quaternion::tf( &temp_quaternion ,
                     &( this->tf_message[ run ].transform.rotation ) );
         }
-
+//        printf( "Start thread for tf static\n");
         this->thread_id = std::thread( &zeabus_ros::StaticTF::broadcast , this , rate );
 
     } // function spin static tf broadcast data

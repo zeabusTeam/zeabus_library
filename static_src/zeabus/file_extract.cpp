@@ -100,10 +100,6 @@ namespace zeabus
                         str_array[ y ] += str_collect[ x ];
                     }
                 }
-                for( unsigned int show  = 0 ; show < 8 ; show++ )
-                {
-                    std::cout   << str_array[ show ] << "\n"; 
-                }
                 frame_id[ run ] = str_array[ 0 ];
                 child_frame[ run ] = str_array[ 1 ];
                 translation_x[ run ] = std::atof( str_array[ 2 ].c_str() );

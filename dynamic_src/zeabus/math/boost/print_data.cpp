@@ -33,6 +33,7 @@ namespace zeabus_boost
     template< class T , int S >
     void print( const boost::qvm::vec< T , S > data )
     {
+        printf( "\t");
         for( int size = 0 ; size < S ; size++ )
         {
             printf( "%8.3f " , (double) data.a[ size ] );

@@ -75,6 +75,6 @@ class PID:
         self.input = input_data
         return self.output
 
-    def non_calculate( self, input_data ):
+    def non_calculate( self, input_data , real_force = None ):
         self.input_data = input_data
         return self.output

@@ -49,6 +49,8 @@ class ControlHandle:
         )
         self.shutdowm_listen_state()
 
+        self.rate = rospy.Rate( 10 ) # I suggest to use sleep for control 10 Hz
+
     def install_listen_state( self ):
         self.listener_state = rospy.Subscriber(
                 pm._TOPIC_INPUT_STATE,
@@ -58,6 +60,24 @@ class ControlHandle:
 
     def shutdowm_listen_state( self ):
         self.listener_state.unregister()
+
+    def check_error( self , x=None , y=None , z=None , roll=None , pitch=None , yaw=None ):
+        result = True
+        linear_error , angular_error = self.get_error()
+        if x != None and result :
+            result = abs( linear_error[0]  ) < x
+        if y != None and result :
+            result = abs( linear_error[1]  ) < y
+        if z != None and result :
+            result = abs( linear_error[2]  ) < z
+        if roll != None and result :
+            result = abs( angular_error[2]  ) < roll
+        if pitch != None and result :
+            result = abs( angular_error[1]  ) < pitch
+        if yaw != None and result :
+            result = abs( angular_error[0]  ) < yaw
+
+        return result
 
     def get_error( self ):
         try:

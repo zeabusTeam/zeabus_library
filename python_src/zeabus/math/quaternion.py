@@ -40,7 +40,8 @@ class Quaternion :
         temp = tf_handle.quaternion_from_euler( yaw, pitch, roll, axes='rzyx')
         self.set_quaternion( temp )
 
-    # function get_euler use to find euler from quaternion 
+    # function get_euler use to find euler from quaternion
+    # return in form yaw pitch roll 
     def get_euler (self):
         temp = tf_handle.euler_from_quaternion( self.vector , axes='rzyx')
         result = ( general.bound_radian( temp[0] )

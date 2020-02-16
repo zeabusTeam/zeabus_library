@@ -76,7 +76,6 @@ class ControlHandle:
             result = abs( angular_error[1]  ) < pitch
         if yaw != None and result :
             result = abs( angular_error[0]  ) < yaw
-
         return result
 
     def get_error( self ):

@@ -19,6 +19,8 @@
 
 #include    <zeabus/convert/bytes.hpp>
 
+#include    <nav_msgs/Odometry.h>
+
 #ifndef _ZEABUS_ROS_CONVERT_GEOMETRY_QUATERNION_HPP__
 #define _ZEABUS_ROS_CONVERT_GEOMETRY_QUATERNION_HPP__
 
@@ -36,7 +38,8 @@ namespace geometry_quaternion
             unsigned int offset = 0);
 
     void tf( const tf::Quaternion* source , geometry_msgs::Quaternion* target ); 
-    void tf( const geometry_msgs::Quaternion* source , tf::Quaternion* target ); 
+    void tf( const geometry_msgs::Quaternion* source , tf::Quaternion* target );
+    void tf( const nav_msgs::Odometry source ,  tf::Quaternion* target ); 
 
 } // namespace geometry_quaternion
 

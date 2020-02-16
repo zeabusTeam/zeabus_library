@@ -40,7 +40,11 @@ namespace zeabus
 namespace robot
 {
 
-    const static double gravity = 9.782970341;
+    const static double gravity = 9.806;
+
+    const static double mass = 35.5;
+
+    const static double volumn = 0.1455;
 
     const static double rho_water = 1027.0;
 

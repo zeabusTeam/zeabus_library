@@ -23,7 +23,12 @@ class Control( object ):
     _TOPIC_PLANE_XY = "/target/velocity/plane_xy"
 
     _TOPIC_ACTIVATE = "/control/activate"
+    _TOPIC_MASK = "/control/mask"
 
     _TOPIC_ADDITION_FORCE = "/control/system/force"
     _TOPIC_TARGET_VELOCITY = "/control/interface/target"
     _TOPIC_INPUT_STATE = "/localize/zeabus"
+
+    _FRAME_ROBOT = "base_link"
+    _FRAME_ROBOT_TARGET = _FRAME_ROBOT + "_target"
+    _FRAME_ODOM = "odom"

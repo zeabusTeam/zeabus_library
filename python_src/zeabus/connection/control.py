@@ -18,7 +18,7 @@ from std_msgs.msg import Header, String
 from ..ros import message as nm # new message
 from ..math.quaternion import Quaternion
 from .constant import Control as pm # parameter
-from zeabus_utility.srv import SendFloat, SendBool , ServiceBool
+from zeabus_utility.srv import SendFloat, SendBool , ServiceBool, ServiceMask
 from zeabus_utility.msg import Float64Array, ControlCommand
 from nav_msgs.msg import Odometry
 
@@ -81,8 +81,8 @@ class ControlHandle:
     def get_error( self ):
         try:
             ( translation , rotation ) = self.listener_tf.lookupTransform(
-                    pm._FRAME_ERROR_PAREMT,
-                    pm._FRAME_ERROR_CHILD,
+                    pm._FRAME_ROBOT,
+                    pm._FRAME_ROBOT_TARGET,
                     rospy.Time()
             )
         except( tf.LookupExcepthin , tf.ConnectivityException , tf.ExtrapolationException ):
@@ -91,6 +91,19 @@ class ControlHandle:
 
         return ( translation , Quaternion( rotation ).get_euler() )
 
+    def get_target( self ):
+        try:
+            ( translation , rotation ) = self.listener_tf.lookupTransform(
+                    pm._FRAME_ODOM,
+                    pm._FRAME_ROBOT,
+                    rospy.Time()
+            )
+        except( tf.LookupExcepthin , tf.ConnectivityException , tf.ExtrapolationException ):
+            translation = ( 0 , 0 , 0 )
+            rotation = ( 0 , 0 , 0 , 1 )
+
+        return ( translation , Quaternion( rotation ).get_euler() )
+        
     def activate( self , data ):
         return self.call( rospy.ServiceProxy( pm._TOPIC_ACTIVATE , SendBool ) , data )
 
@@ -124,6 +137,13 @@ class ControlHandle:
     def relative_roll( self , data ):
         return self.call( rospy.ServiceProxy( pm._TOPIC_RELATIVE_ROLL , SendFloat )  , data )
 
+    def set_mask( self,  x=True , y=True , z=True , roll=True , pitch=True , yaw=True ):
+        data = ( x , y , z , roll , pitch , yaw )
+        return self.call_mask( True , data )
+
+    def get_mask( self ):
+        return self.call_mask( False )
+
     def call( self , client , data ):
         result = None
         try:
@@ -133,6 +153,14 @@ class ControlHandle:
             print( "Service call filed : {:s}".format( error ))
         return result
 
+    def call_mask( self , activate , data = (True , True , True , True , True , True ) ):
+        result = ( False , False , False , False , False , False)
+        try:
+            result = rospy.ServiceProxy( pm._TOPIC_MASK , ServiceMask )( activate , data )
+        except rospy.ServiceException , error :
+            print( "Service Mask failure : {:s}".format( error ))
+        return result
+        
     def pub( self , data ):
         self.publish_message.publish( String( self.header.frame_id + " : " + data ) )
 
@@ -143,6 +171,7 @@ class ControlHandle:
                     ( x , y , z , roll , pitch , yaw ) ) )
         else:
             self.publish_addition_force.publish( nm.float64_array( frame , summary ) )
+
 
     def target_velocity( self , frame ,
             x = None , y = None , z = None , roll = None , pitch = None , yaw = None ):
@@ -188,3 +217,9 @@ class ControlHandle:
 
     def __getitem__( self , index , position = True ):
         return self.pose[ index ] if position else self.velocity[ index ]
+
+    def sleep( self ):
+        self.rate.sleep()
+
+    def ok( self ):
+        return not rospy.is_shutdown()

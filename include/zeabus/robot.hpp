@@ -44,7 +44,7 @@ namespace robot
 
     const static double mass = 35.5;
 
-    const static double volumn = 0.1455;
+    const static double volumn = 0.04;
 
     const static double rho_water = 1027.0;
 

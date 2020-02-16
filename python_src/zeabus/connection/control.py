@@ -114,7 +114,7 @@ class ControlHandle:
         return self.call( rospy.ServiceProxy( pm._TOPIC_PLANE_XY , SendFloat ) , data )
         
     def absolute_depth( self , data ):
-        return self.call( rospy.ServiceProxy( pm._TOPIC_ABSOLUTE_YAW , SendFloat )  , data )
+        return self.call( rospy.ServiceProxy( pm._TOPIC_ABSOLUTE_DEPTH , SendFloat )  , data )
 
     def absolute_yaw( self , data ):
         return self.call( rospy.ServiceProxy( pm._TOPIC_ABSOLUTE_YAW , SendFloat )  , data )
@@ -164,7 +164,7 @@ class ControlHandle:
     def pub( self , data ):
         self.publish_message.publish( String( self.header.frame_id + " : " + data ) )
 
-    def add_force( self , frame , summary = None,
+    def add_force( self , frame = "base_link" , summary = None,
                 x = 0 , y = 0 , z = 0 , roll = 0 , pitch = 0 , yaw = 0 ):
         if summary == None :
             self.publish_addition_force.publish( nm.float64_array( frame ,
@@ -173,7 +173,7 @@ class ControlHandle:
             self.publish_addition_force.publish( nm.float64_array( frame , summary ) )
 
 
-    def target_velocity( self , frame ,
+    def target_velocity( self , frame = "base_link",
             x = None , y = None , z = None , roll = None , pitch = None , yaw = None ):
         # first step I will find mark
         target = []

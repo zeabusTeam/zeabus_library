@@ -60,7 +60,8 @@ namespace robot
         { cos45 , -1*sin45 , 0 },
         { cos45 , sin45 , 0 },
         { -1*cos45 , -1*sin45 , 0 },
-        { -1*cos45 , sin45 , 0 }
+//        { -1*cos45 , sin45 , 0 }
+        { 0 , 0 , 0 }
     };
 
     const static boost::qvm::vec< double , 3 > distance[ 8 ] = {

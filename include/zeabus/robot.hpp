@@ -76,14 +76,14 @@ namespace robot
     };
 
     const static boost::qvm::vec< double , 3 > direction_moment[ 8 ] = {
-        boost::qvm::cross( direction_linear_force[ 0 ] , distance[ 0 ] ),
-        boost::qvm::cross( direction_linear_force[ 1 ] , distance[ 1 ] ),
-        boost::qvm::cross( direction_linear_force[ 2 ] , distance[ 2 ] ),
-        boost::qvm::cross( direction_linear_force[ 3 ] , distance[ 3 ] ),
-        boost::qvm::cross( direction_linear_force[ 4 ] , distance[ 4 ] ),
-        boost::qvm::cross( direction_linear_force[ 5 ] , distance[ 5 ] ),
-        boost::qvm::cross( direction_linear_force[ 6 ] , distance[ 6 ] ),
-        boost::qvm::cross( direction_linear_force[ 7 ] , distance[ 7 ] ),
+        boost::qvm::cross( distance[ 0 ] , direction_linear_force[ 0 ] ),
+        boost::qvm::cross( distance[ 1 ] , direction_linear_force[ 1 ] ),
+        boost::qvm::cross( distance[ 2 ] , direction_linear_force[ 2 ] ),
+        boost::qvm::cross( distance[ 3 ] , direction_linear_force[ 3 ] ),
+        boost::qvm::cross( distance[ 4 ] , direction_linear_force[ 4 ] ),
+        boost::qvm::cross( distance[ 5 ] , direction_linear_force[ 5 ] ),
+        boost::qvm::cross( distance[ 6 ] , direction_linear_force[ 6 ] ),
+        boost::qvm::cross( distance[ 7 ] , direction_linear_force[ 7 ] ),
     };
 
     const static boost::qvm::mat< double , 8 , 6 > direction_all = {

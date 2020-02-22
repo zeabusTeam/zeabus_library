@@ -55,6 +55,15 @@ namespace robot
     const static boost::qvm::vec< double , 3 > vec_center_gravity = 
             { -0.0001898 , 0.0060833 , -0.00060831 };
 
+    const static boost::qvm::mat< double , 3 , 1 > mat_force_gravity = 
+            { 0 , 0 , -1.0 * mass * gravity};
+
+    const static boost::qvm::mat< double , 3 , 1 > mat_force_buoncy =
+            { 0 , 0 , rho_water * mass * volumn };
+
+    const static boost::qvm::mat< double , 3 , 1 > mat_force_constant =
+            { 0 , 0 , force_estimate };
+
     const static boost::qvm::mat< double , 3 , 3 > mat_center_gravity = 
             { 0                     , -1.0 * vec_center_gravity.a[2], vec_center_gravity.a[1] ,
             vec_center_gravity.a[2] , 0                             , -1.0 * vec_center_gravity.a[0],

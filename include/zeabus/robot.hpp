@@ -52,6 +52,15 @@ namespace robot
     const static double buoncy = volumn * gravity * volumn;
     const static double force_estimate = -26.34255;
 
+    const static boost::qvm::mat< double , 6 , 6 > mat_inertia = {
+        mass,   0,      0,      0,      0,      0,
+        0,      mass,   0,      0,      0,      0,
+        0,      0,      mass,   0,      0,      0,
+        0,      0,      0,      6.3663, 0,      0,
+        0,      0,      0,      0,      5.8800, 0,
+        0,      0,      0,      0,      0,      5.4920
+    };
+
     const static boost::qvm::vec< double , 3 > vec_center_gravity = 
             { -0.0001898 , 0.0060833 , -0.00060831 };
 

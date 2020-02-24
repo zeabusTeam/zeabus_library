@@ -51,6 +51,9 @@ namespace zeabus
     bool extract_csv_type_8( FileCSV* file_object , std::string* frame_id , std::string* child_frame,
             double* translation_x , double* translation_y , double* translation_z ,
             double* rotation_x , double* rotation_y , double* rotation_z );
+
+    bool extract_csv_type_15( FileCSV* file_object, double* thruster_force , 
+            double* euler_robot , double* angular_velocity , double* angular_accel );
 }
 
 #endif // _ZEABUS_FILE_HPP__

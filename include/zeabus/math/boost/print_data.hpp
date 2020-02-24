@@ -13,9 +13,9 @@
 
 // MACRO CONDITION
 
-#include    <boost/qvm/vec_access.hpp>
+#include    <boost/qvm/vec.hpp>
 
-#include    <boost/qvm/mat_access.hpp>
+#include    <boost/qvm/mat.hpp>
 
 #include    <iostream>
 

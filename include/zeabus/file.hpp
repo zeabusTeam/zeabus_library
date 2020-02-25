@@ -46,6 +46,8 @@ namespace zeabus
 
     }; // class structor declare
 
+    bool extract_csv_type_1( FileCSV* file_object , double* first );
+
     bool extract_csv_type_2( FileCSV* file_object , int* first , double* second );
 
     bool extract_csv_type_8( FileCSV* file_object , std::string* frame_id , std::string* child_frame,

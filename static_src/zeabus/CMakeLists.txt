@@ -10,5 +10,6 @@ add_subdirectory( math )
 
 add_library( File 
     file.cpp 
-    file_extract.cpp
+    file_extract_01.cpp
+    file_extract_02.cpp
 )

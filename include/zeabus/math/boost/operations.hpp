@@ -25,8 +25,8 @@ namespace zeabus_boost
 {
     template< typename T , int R , int C >
     inline void mat_concat( boost::qvm::mat< T , R * 2 , C >* target , 
-            const boost::qvm::mat< T , R , C >* source1,
-            const boost::qvm::mat< T , R , C >* source2);
+            const boost::qvm::mat< T , R , C > source1,
+            const boost::qvm::mat< T , R , C > source2);
 }
 
 #include    <zeabus/math/boost/operations.cpp>

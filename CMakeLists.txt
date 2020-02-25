@@ -16,6 +16,7 @@ find_package( zeabus_utility REQUIRED COMPONENTS )
 set( SHARED_LIBS
     SynchronousPort
     ImuConnector
+    Quaternion
     Convert
     File
     Ahrs
@@ -25,6 +26,10 @@ set( ROS_LIBS
     Ros
     RosHandle
     RosConvert
+)
+
+set( MATH_LIBS
+    Quaternion
 )
 
 set( zeabus_library_include_path 
@@ -37,7 +42,7 @@ set( zeabus_library_dynamic_source
 
 catkin_package(
     INCLUDE_DIRS ${zeabus_library_include_path} ${zeabus_library_dynamic_source}
-    LIBRARIES ${SHARED_LIBS} ${ROS_LIBS}
+    LIBRARIES ${SHARED_LIBS} ${ROS_LIBS} ${MATH_LIBS}
     CATKIN_DEPENDS zeabus_utility roscpp tf sensor_msgs geometry_msgs
     DEPENDS Boost
 )

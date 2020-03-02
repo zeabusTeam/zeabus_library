@@ -18,6 +18,10 @@
 
 #include    <tf/LinearMath/Quaternion.h>
 
+#include    <tf/LinearMath/Vector3.h>
+
+#include    <boost/array.hpp>
+
 #include    <zeabus/convert/bytes.hpp>
 
 #ifndef _ZEABUS_ROS_CONVERT_GEOMETRY_VECTOR3_HPP__
@@ -39,6 +43,19 @@ namespace geometry_vector3
     void tf( const geometry_msgs::Vector3* ptr_input , tf::Quaternion* ptr_result );
     void tf( const tf::Quaternion* ptr_input , geometry_msgs::Vector3* ptr_result );
 
+    void array( const geometry_msgs::Vector3* ptr_source , boost::array< double , 3 >* ptr_target );
+    void array( const boost::array< double , 3 >* ptr_source , geometry_msgs::Vector3* ptr_target );
+    void array( const geometry_msgs::Vector3& ptr_source , boost::array< double , 3 >* ptr_target );
+    void array( const boost::array< double , 3 >& ptr_source , geometry_msgs::Vector3* ptr_target );
+
+    void tf( const tf::Vector3* ptr_input , geometry_msgs::Vector3* ptr_result );
+    void tf( const geometry_msgs::Vector3* ptr_input , tf::Vector3* ptr_result );
+
+    tf::Vector3 tf( const geometry_msgs::Vector3* ptr_source );
+    geometry_msgs::Vector3 tf( const tf::Vector3* ptr_source );
+
+    tf::Vector3 tf( const geometry_msgs::Vector3& source );
+    geometry_msgs::Vector3 tf( const tf::Vector3& source );
 } // namespace geometry_vector3
 
 } // namespace convert

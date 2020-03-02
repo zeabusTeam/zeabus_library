@@ -20,7 +20,6 @@ class Control( object ):
     _TOPIC_ABSOLUTE_DEPTH = "/target/absolute/depth"
 
     _TOPIC_RESET_ALL = "/target/reset/all"
-    _TOPIC_PLANE_XY = "/target/velocity/plane_xy"
 
     _TOPIC_ACTIVATE = "/control/activate"
     _TOPIC_MASK = "/control/mask"

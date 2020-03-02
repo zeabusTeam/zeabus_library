@@ -44,7 +44,39 @@ namespace math
         *roll = atan2( 2.0 * ( source.y * source.z + source.w * source.x ) ,
                 pow( source.w , 2 ) - pow( source.x , 2 ) - 
                         pow( source.y , 2 ) + pow( source.z , 2 )  );
-    }    
+    }
+
+    void rotation( const tf::Quaternion& quaternion , boost::array< double , 3 >* vector)
+    {
+        tf::Quaternion temp_quaternion( vector->at( 0 ), vector->at( 1 ) , vector->at( 2 ) , 0 );
+        temp_quaternion = quaternion.inverse() * temp_quaternion * quaternion;
+        vector->at( 0 ) = temp_quaternion.x();
+        vector->at( 1 ) = temp_quaternion.y();
+        vector->at( 2 ) = temp_quaternion.z();
+    } 
+
+    void inv_rotation( const tf::Quaternion& quaternion , boost::array< double , 3 >* vector )
+    {
+        tf::Quaternion temp_quaternion( vector->at( 0 ), vector->at( 1 ) , vector->at( 2 ) , 0 );
+        temp_quaternion = quaternion * temp_quaternion * quaternion.inverse();
+        vector->at( 0 ) = temp_quaternion.x();
+        vector->at( 1 ) = temp_quaternion.y();
+        vector->at( 2 ) = temp_quaternion.z();
+    }
+
+    void rotation( const tf::Quaternion& quaternion , tf::Vector3* vector)
+    {
+        tf::Quaternion temp_quaternion( vector->x(), vector->y() , vector->z() , 0 );
+        temp_quaternion = quaternion.inverse() * temp_quaternion * quaternion;
+        *vector = tf::Vector3( temp_quaternion.x() , temp_quaternion.y() , temp_quaternion.z() );
+    } 
+
+    void inv_rotation( const tf::Quaternion& quaternion , tf::Vector3* vector )
+    {
+        tf::Quaternion temp_quaternion( vector->x(), vector->y() , vector->z() , 0 );
+        temp_quaternion = quaternion * temp_quaternion * quaternion.inverse();
+        *vector = tf::Vector3( temp_quaternion.x() , temp_quaternion.y() , temp_quaternion.z() );
+    }
 } // namespace math
 
 } // namespace zeabus

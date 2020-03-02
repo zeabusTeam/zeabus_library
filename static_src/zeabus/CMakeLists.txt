@@ -8,6 +8,8 @@ add_subdirectory( ros )
 
 add_subdirectory( math )
 
+#add_subdirectory( opencv )
+
 add_library( File 
     file.cpp 
     file_extract_01.cpp

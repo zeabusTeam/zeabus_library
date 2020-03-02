@@ -18,7 +18,11 @@
 
 #include    <tf/LinearMath/Quaternion.h>
 
+#include    <tf/LinearMath/Vector3.h>
+
 #include    <geometry_msgs/Quaternion.h>
+
+#include    <boost/array.hpp>
 
 #include    <cmath>
 
@@ -35,6 +39,12 @@ namespace math
 
     void get_euler( const geometry_msgs::Quaternion source,
             double* roll , double* pitch , double* yaw );
+
+    void rotation( const tf::Quaternion& quaternion , tf::Vector3* vector );
+    void inv_rotation( const tf::Quaternion& quaternion , tf::Vector3* vector );
+
+    void rotation( const tf::Quaternion& quaternion , boost::array< double , 3 >* vector );
+    void inv_rotation( const tf::Quaternion& quaternion , boost::array< double , 3 >* vector );
 
 } // namespace mat
 

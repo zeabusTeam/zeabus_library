@@ -110,9 +110,6 @@ class ControlHandle:
     def reset_all( self , data ):
         return self.call( rospy.ServiceProxy( pm._TOPIC_RESET_ALL , SendBool ) , data )
 
-    def plane_xy( self , data ):
-        return self.call( rospy.ServiceProxy( pm._TOPIC_PLANE_XY , SendFloat ) , data )
-        
     def absolute_depth( self , data ):
         return self.call( rospy.ServiceProxy( pm._TOPIC_ABSOLUTE_DEPTH , SendFloat )  , data )
 

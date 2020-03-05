@@ -51,7 +51,7 @@ namespace robot
     const static double rho_water = 1027.0;
 
     const static double weight = mass * gravity;
-    const static double buoncy = volumn * gravity * volumn;
+    const static double buoncy = rho_water * gravity * volumn;
     const static double force_estimate = -26.34255;
 
     const static boost::qvm::mat< double , 6 , 6 > mat_inertia = {

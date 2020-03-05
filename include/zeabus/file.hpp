@@ -56,6 +56,9 @@ namespace zeabus
 
     bool extract_csv_type_15( FileCSV* file_object, double* thruster_force , 
             double* euler_robot , double* angular_velocity , double* angular_accel );
+
+    bool extract_csv_type_observer_train( FileCSV* file_object , double* robot_velocity,
+            double* robot_acceleration, double* robot_quaternion , double* force_thruster );
 }
 
 #endif // _ZEABUS_FILE_HPP__

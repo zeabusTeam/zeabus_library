@@ -64,6 +64,24 @@ namespace math
         vector->at( 2 ) = temp_quaternion.z();
     }
 
+    void rotation( const tf::Quaternion& quaternion , double* vector)
+    {
+        tf::Quaternion temp_quaternion( vector[0], vector[1] , vector[2] , 0 );
+        temp_quaternion = quaternion.inverse() * temp_quaternion * quaternion;
+        vector[0] = temp_quaternion.x();
+        vector[1] = temp_quaternion.y();
+        vector[2] = temp_quaternion.z();
+    } 
+
+    void inv_rotation( const tf::Quaternion& quaternion , double* vector )
+    {
+        tf::Quaternion temp_quaternion( vector[0], vector[1] , vector[2] , 0 );
+        temp_quaternion = quaternion * temp_quaternion * quaternion.inverse();
+        vector[0] = temp_quaternion.x();
+        vector[1] = temp_quaternion.y();
+        vector[2] = temp_quaternion.z();
+    }
+
     void rotation( const tf::Quaternion& quaternion , tf::Vector3* vector)
     {
         tf::Quaternion temp_quaternion( vector->x(), vector->y() , vector->z() , 0 );

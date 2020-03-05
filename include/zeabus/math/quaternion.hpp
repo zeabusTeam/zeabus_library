@@ -46,6 +46,9 @@ namespace math
     void rotation( const tf::Quaternion& quaternion , boost::array< double , 3 >* vector );
     void inv_rotation( const tf::Quaternion& quaternion , boost::array< double , 3 >* vector );
 
+    void rotation( const tf::Quaternion& quaternion , double* vector );
+    void inv_rotation( const tf::Quaternion& quaternion , double* vector );
+
 } // namespace mat
 
 } // namespace zeabus

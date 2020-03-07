@@ -17,6 +17,8 @@
 
 #include    <boost/qvm/mat.hpp>
 
+#include    <boost/qvm/map_mat_mat.hpp>
+
 #include    <iostream>
 
 #ifndef _ZEABUS_MATH_BOOST_PRINT_DATA_HPP__
@@ -30,6 +32,13 @@ namespace zeabus_boost
 
     template< class T , int S > 
     void print( const boost::qvm::vec< T , S > data );
+
+    template< class T , int R , int C >
+    inline void printT( const boost::qvm::mat< T , R , C > data )
+    {
+        boost::qvm::mat< T , C , R > temp = boost::qvm::transposed( data );
+        print( temp );
+    }
 
 } // namespace zeabus_boost
 

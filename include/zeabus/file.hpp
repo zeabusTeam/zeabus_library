@@ -62,6 +62,10 @@ namespace zeabus
 
     bool extract_csv_type_observer_train( FileCSV* file_object , double* robot_velocity,
             double* robot_acceleration, double* robot_quaternion , double* force_thruster );
+
+    void dump_csv_type_3( const std::string file_object , 
+            const double* first , const double* second , const double* third,
+            unsigned int size );
 }
 
 #endif // _ZEABUS_FILE_HPP__

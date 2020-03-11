@@ -15,4 +15,5 @@ add_library( File
     file_extract_01.cpp
     file_extract_02.cpp
     file_extract_03.cpp
+    file_dump_01.cpp
 )

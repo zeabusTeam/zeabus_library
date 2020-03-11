@@ -50,6 +50,9 @@ namespace zeabus
 
     bool extract_csv_type_2( FileCSV* file_object , int* first , double* second );
 
+    bool extract_csv_type_3( FileCSV* file_object , double* first , double* second,
+            double* third );
+
     bool extract_csv_type_8( FileCSV* file_object , std::string* frame_id , std::string* child_frame,
             double* translation_x , double* translation_y , double* translation_z ,
             double* rotation_x , double* rotation_y , double* rotation_z );

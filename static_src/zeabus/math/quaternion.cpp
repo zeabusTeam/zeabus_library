@@ -95,6 +95,23 @@ namespace math
         temp_quaternion = quaternion * temp_quaternion * quaternion.inverse();
         *vector = tf::Vector3( temp_quaternion.x() , temp_quaternion.y() , temp_quaternion.z() );
     }
+
+    void get_quaternion( const double roll , const double pitch , const double yaw,
+            tf::Quaternion* quaternion )
+    {
+        double sp = sin( pitch / 2 ); // sin( pitch / 2 )
+        double cp = cos( pitch / 2 ); // cos( pitch / 2 )
+        double sr = sin( roll / 2 ); // sin( roll / 2 )
+        double cr = cos( roll / 2 ); // cos( roll / 2 )
+        double sy = sin( yaw / 2 ); // sin( yaw / 2 )
+        double cy = cos( yaw / 2 ); // cos( yaw / 2 )
+        *quaternion = tf::Quaternion(
+            -1.0 * sy * sp * cr + cy * cp * sr, // x
+            +1.0 * sy * cp * sr + cy * sp * cr, // y
+            +1.0 * sy * cp * cr - cy * sp * sr, // z
+            +1.0 * sy * sp * sr + cy * cp * cr  // w
+        );
+    }
 } // namespace math
 
 } // namespace zeabus

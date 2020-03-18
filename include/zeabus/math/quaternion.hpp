@@ -49,7 +49,10 @@ namespace math
     void rotation( const tf::Quaternion& quaternion , double* vector );
     void inv_rotation( const tf::Quaternion& quaternion , double* vector );
 
-} // namespace mat
+    void get_quaternion( const double roll , const double pitch , const double yaw ,
+            tf::Quaternion* quaternion );
+
+} // namespace math
 
 } // namespace zeabus
 

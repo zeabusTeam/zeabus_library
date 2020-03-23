@@ -59,7 +59,7 @@ namespace zeabus
         return success;
     }
 
-    bool extract_csv_type_2( FileCSV* file_object , double* first , double* second, double* third )
+    bool extract_csv_type_3( FileCSV* file_object , double* first , double* second, double* third )
     {
         std::string str_array[3];
         std::string str_collect;

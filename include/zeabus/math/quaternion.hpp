@@ -40,6 +40,9 @@ namespace math
     void get_euler( const geometry_msgs::Quaternion source,
             double* roll , double* pitch , double* yaw );
 
+    inline void rotation( const tf::Quaternion& rot_quaternion , tf::Quaternion* quaternion );
+    inline void inv_rotation( const tf::Quaternion& rot_quaternion , tf::Quaternion* quaternion );
+
     void rotation( const tf::Quaternion& quaternion , tf::Vector3* vector );
     void inv_rotation( const tf::Quaternion& quaternion , tf::Vector3* vector );
 
@@ -56,4 +59,5 @@ namespace math
 
 } // namespace zeabus
 
+#include    <zeabus/math/quaternion.cpp>
 #endif // _ZEABUS_MATH_QUATENRION_HPP__

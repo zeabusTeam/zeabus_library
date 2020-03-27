@@ -55,6 +55,16 @@ namespace geometry_quaternion
                 source.pose.pose.orientation.z , 
                 source.pose.pose.orientation.w );
     } // function get move data from geometry_msgs:;Quaternion to tf::Quaternion
+
+    void tf( const nav_msgs::Odometry* source , tf::Quaternion* target )
+    {
+        *target = tf::Quaternion( source->pose.pose.orientation.x , 
+                source->pose.pose.orientation.y , 
+                source->pose.pose.orientation.z , 
+                source->pose.pose.orientation.w );
+    } // function get move data from geometry_msgs:;Quaternion to tf::Quaternion
+
+
 } // namespace geometry_quaternion
 
 } // namespace convert

@@ -39,6 +39,8 @@ namespace geometry_quaternion
 
     void tf( const tf::Quaternion* source , geometry_msgs::Quaternion* target ); 
     void tf( const geometry_msgs::Quaternion* source , tf::Quaternion* target );
+
+    void tf( const nav_msgs::Odometry* source ,  tf::Quaternion* target ); 
     void tf( const nav_msgs::Odometry source ,  tf::Quaternion* target ); 
 
 } // namespace geometry_quaternion

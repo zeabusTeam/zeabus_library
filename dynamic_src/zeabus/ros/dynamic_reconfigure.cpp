@@ -32,13 +32,16 @@ namespace zeabus_ros
         this->ptr_lock_data = ptr_lock_data;
     }
 
-    void spin()
+    template< class config_type >
+    void DynamicReconfigureServer< config_type >::spin()
     {
-        this->function_reconfigure = boost::bind( &(this->callback) , _1 , _2 );
-        this->server_reconfigure.setCallback( this->function_reconfigure );
+        dynamic_reconfigure::Server< config_type >::CallbackType function_reconfigure = 
+                boost::bind( &(this->callback) , _1 , _2 );
+        this->server_reconfigure.setCallback( function_reconfigure );
     }
 
-    void callback( config_type& config , uint32_t level )
+    template< class config_type >
+    void DynamicReconfigureServer< config_type >::callback( config_type& config , uint32_t level )
     {
         int level_data = (int)level;
         if( level_data == -1 )

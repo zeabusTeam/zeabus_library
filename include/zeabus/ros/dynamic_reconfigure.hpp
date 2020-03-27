@@ -66,8 +66,8 @@ namespace zeabus_ros
             void spin();
             void callback( config_type& config , uint32_t level );
 
-            dynamic_recondifure::Server< config_type > server_reconfigure;
-            dynamic_recondifure::Server< config_type >::CallbackType function_reconfigure;
+            dynamic_reconfigure::Server< config_type > server_reconfigure;
+//            dynamic_reconfigure::Server< config_type >::CallbackType function_reconfigure;
 
         protected:
             config_type* ptr_default_config; // use to collect dafault data
@@ -80,5 +80,5 @@ namespace zeabus_ros
 
 } // namespace zeabus_ros
 
-#include    <zeabus/ros/dynamic_reconfigure.cpp>
+//#include    <zeabus/ros/dynamic_reconfigure.cpp>
 #endif // _ZEABUS_ROS_DYNAMIC_RECONFIGURE_HPP__

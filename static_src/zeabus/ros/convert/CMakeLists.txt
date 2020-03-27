@@ -2,6 +2,7 @@ add_library( RosConvert SHARED
     sensor_imu.cpp
     geometry_vector3.cpp
     geometry_quaternion.cpp
+    nav_odometry.cpp
 )
 
 target_link_libraries( RosConvert

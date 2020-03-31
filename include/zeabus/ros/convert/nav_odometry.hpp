@@ -33,6 +33,8 @@ namespace nav_odometry
 
     void tf( const tf::StampedTransform* source , nav_msgs::Odometry* dest );
 
+    void tf( const nav_msgs::Odometry* source , tf::StampedTransform* dest );
+
 } // namesapce nav_odometry
 
 } // namesapce convert

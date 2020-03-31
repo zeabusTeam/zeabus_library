@@ -42,15 +42,16 @@ namespace nav_odometry
 
     void tf( const nav_msgs::Odometry* source , tf::StampedTransform* dest )
     {
-        *dest = tf::StampedTransform( tf::Transform( tf::Quaternion(
-                        source->pose.pose.orientation.x,
-                        source->pose.pose.orientation.y,
-                        source->pose.pose.orientation.z,
-                        source->pose.pose.orientation.w ), 
-                tf::Vector3( source->pose.pose.position.x,
-                        source->pose.pose.position.y,
-                        source->pose.pose.position.z ) 
-                ),
+        *dest = tf::StampedTransform( 
+                tf::Transform( 
+                        tf::Quaternion(
+                                source->pose.pose.orientation.x,
+                                source->pose.pose.orientation.y,
+                                source->pose.pose.orientation.z,
+                                source->pose.pose.orientation.w ), 
+                        tf::Vector3( source->pose.pose.position.x,
+                                source->pose.pose.position.y,
+                                source->pose.pose.position.z ) ),
                 source->header.stamp,
                 source->header.frame_id,
                 source->child_frame_id
